@@ -1,4 +1,7 @@
 import {useEffect, useState} from "react";
+import {getServerData} from "./GetServerData";
+import {DataSource} from "./DataSource";
+import {PokemonsForms} from "./PokemonsForms";
 
 export const Pokemons = (props) => {
     const [pokemons, setPokemons] = useState(null);
@@ -12,7 +15,9 @@ export const Pokemons = (props) => {
         <>
             {pokemons.results.map((item, i) => (
                 <div key={i}>
-                    <h1>{pokemons.results[i].name}</h1>
+                    <DataSource getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon-form/${i}`)} resourceName={"forms"}>
+                      <PokemonsForms/>
+                    </DataSource>
                 </div>
 
             ))}
