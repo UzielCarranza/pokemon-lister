@@ -11,8 +11,8 @@ export const PokemonsForms = (props) => {
     }, [props])
     return forms !== null ? (<>
 
-        <div>
-                <h1>hi {props.forms.pokemon.name}</h1>
+        <div className="wrapper">
+                <h1 className="pokemon-name">{props.forms.pokemon.name}</h1>
                 <img src={props.forms.sprites.front_default} alt=""/>
         </div>
     </>) : ""

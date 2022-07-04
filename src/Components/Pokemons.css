@@ -2,3 +2,7 @@
 .pokemons-grid{
     @apply grid grid-cols-4 gap-4
 }
+
+.wrapper{
+    @apply mx-10 my-4 p-2 flex flex-col text-center divide-x divide-dashed
+}
