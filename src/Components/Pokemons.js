@@ -1,11 +1,22 @@
-export const Pokemons = (props) => {
-    console.log(props)
+import {useEffect, useState} from "react";
 
-    return props ? (
-        <div>
-            <h1>{props.pokemon.forms[0].name}</h1>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/132.png" alt="ditto"/>
-        </div>
-    ) : ""
+export const Pokemons = (props) => {
+    const [pokemons, setPokemons] = useState(null);
+
+    useEffect(() => {
+        if (props.pokemon !== null) {
+            setPokemons(props.pokemon)
+        }
+    }, [props])
+    return pokemons !== null ? (
+        <>
+            {pokemons.results.map((item, i) => (
+                <div key={i}>
+                    <h1>{pokemons.results[i].name}</h1>
+                </div>
+
+            ))}
+        </>) : <p>loading</p>
+
 
 }
