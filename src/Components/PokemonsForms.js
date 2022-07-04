@@ -4,7 +4,7 @@ export const PokemonsForms = (props) => {
 
 
     useEffect(() => {
-        if (props !== null) {
+        if (props.forms !== null) {
             setForms(props.forms)
             console.log(props)
         }
@@ -13,7 +13,7 @@ export const PokemonsForms = (props) => {
 
         <div>
             <h1>hi {props.forms.pokemon.name}</h1>
-            <img src={props.forms.sprites.back_default} alt=""/>
+            <img src={props.forms.sprites.front_default} alt=""/>
         </div>
     </>) : ""
 }
