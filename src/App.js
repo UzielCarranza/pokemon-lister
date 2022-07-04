@@ -6,7 +6,7 @@ import {DataSource} from "./Components/DataSource";
 function App() {
     return (
         <>
-            <DataSource getDataFunc={getServerData('https://pokeapi.co/api/v2/pokemon/ditto')} resourceName="pokemon" >
+            <DataSource getDataFunc={getServerData('https://pokeapi.co/api/v2/pokemon/')} resourceName="pokemon" >
                 <Pokemons/>
             </DataSource>
         </>
