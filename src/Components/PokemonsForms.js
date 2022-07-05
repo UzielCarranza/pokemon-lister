@@ -7,7 +7,6 @@ export const PokemonsForms = (props) => {
     useEffect(() => {
         if (props.forms !== null) {
             setForms(props.forms)
-            console.log(props)
         }
     }, [props])
     return forms !== null ? (<>
@@ -17,8 +16,7 @@ export const PokemonsForms = (props) => {
                 <h1 className="pokemon-name">{props.forms.pokemon.name}</h1>
                 <img src={props.forms.sprites.front_default} alt=""/>
                 <div className="card-back">
-                    <h3>Coffee Project</h3>
-                    <p>A pair programming project developed with vanilla javaScript, CSS3, and HTML5</p>
+                    <h3>{props.forms.types[0].type.name}</h3>
                 </div>
 
             </div>
