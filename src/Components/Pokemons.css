@@ -6,3 +6,51 @@
 .wrapper{
     @apply mx-10 my-4 p-2 flex flex-col text-center divide-x divide-dashed
 }
+
+
+
+.card {
+    height: 14em;
+    width: 80%;
+    margin: 3em auto;
+    transform-style: revert;
+    perspective: 300px;
+    transition: 0.5ms;
+}
+
+.card:hover .card-front {
+    transform: rotateY(0deg);
+}
+
+.card:hover .card-back {
+    transform: rotateY(0deg);
+}
+
+.card-front {
+    height: 100%;
+    width: 100%;
+    background-position: 50% 50%;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ddd;
+    backface-visibility: hidden;
+    transform: rotateX(0deg);
+    transition: 0.6s;
+
+}
+
+.card-back {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ddd;
+    backface-visibility: hidden;
+    transform: rotateX(180deg);
+    transition: 0.6s;
+    color: #000;
+    text-align: center;
+}
