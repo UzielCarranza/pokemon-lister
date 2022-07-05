@@ -16,8 +16,8 @@ export const Pokemons = (props) => {
     return pokemons !== null ? (
         <>
             {pokemons.results.map((item, i) => (
-                    <DataSource getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon-form/${i}`)} resourceName={"forms"}>
-                      <PokemonsForms/>
+                    <DataSource key={pokemons.results[i].name} getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon-form/${i}`)} resourceName={"forms"}>
+                      <PokemonsForms key={pokemons.results[i].name}/>
                     </DataSource>
 
             ))}
