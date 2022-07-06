@@ -1,4 +1,7 @@
 
+/*
+CARDS WRAPPER
+*/
 .pokemons-grid{
     @apply grid grid-cols-4 gap-4
 }
@@ -7,11 +10,17 @@
     @apply mx-10 my-4 p-2 flex flex-col text-center
 }
 
+
+/*
+CARDS
+*/
 .card{
-    @apply m-4 p-4 h-auto w-auto bg-yellow-700
+    background: linear-gradient(90deg, #FDBB2D 0%, #22C1C3 100%);
+    @apply m-4 p-4 h-auto w-auto shadow-2xl
 }
 
 .card-img{
+    height: 10em;
     @apply w-1/2 m-0 p-0 flex items-center m-auto bg-blue-50
 }
 
@@ -19,6 +28,10 @@
     @apply text-center
 }
 
+
+/*
+STATS WRAPPER
+*/
 .stats-wrapper{
     @apply bg-blue-50 text-center h-auto flex flex-col justify-center
 }
