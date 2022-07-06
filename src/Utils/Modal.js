@@ -9,6 +9,7 @@ import {Abilities} from "../Components/Abilities";
 import {FaCloudsmith} from "react-icons/fa";
 import {BiWater} from "react-icons/bi";
 import {RiEmotionNormalLine} from "react-icons/ri";
+import {MdCatchingPokemon} from "react-icons/md";
 
 const ModalBackground = styled.div`
 position: fixed;
@@ -38,10 +39,9 @@ export const Modal = ({children}) => {
     const [shouldShow, setShouldShow] = useState(false);
     return (
         <>
-            <div className="flex justify-center">
-                <button className="text-white shadow-btn w-24 mt-4 cursor-pointer" onClick={() => setShouldShow(true)}>
-                    More Details
-                </button>
+            <span className="open-modal-text">Click here for more details!</span>
+            <div className="open-modal">
+                <MdCatchingPokemon style={{color: "white", backgroundColor: "red", fontSize: 60}} className="close-modal" onClick={() => setShouldShow(true)}/>
             </div>
             {shouldShow && (
                 <ModalBackground>
@@ -51,11 +51,11 @@ export const Modal = ({children}) => {
                                                onClick={() => setShouldShow(false)}/>
                         </div>
                         <div className="extra-details__div-modal">
+
                             <img className="extra-details__img--modal" src={children.sprites.back_default}
                                  alt="pokemon-back"/>
                             <img className="extra-details__img--modal" src={children.sprites.front_shiny}
                                  alt="pokemon-shiny-front"/>
-
                             <img className="extra-details__img--modal" src={children.sprites.back_shiny}
                                  alt="pokemon-shiny-back"/>
                         </div>
