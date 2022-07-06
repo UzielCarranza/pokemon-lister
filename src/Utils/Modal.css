@@ -19,6 +19,12 @@ CLOSE BUTTON WRAPPER
 .close-modal{
     @apply cursor-pointer justify-end
 }
+.open-modal{
+    @apply  cursor-pointer flex justify-center m-4
+}
+.open-modal-text{
+    @apply  flex justify-center mt-4
+}
 
 /*
 ABILITIES
