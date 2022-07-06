@@ -1,0 +1,21 @@
+
+/*
+DIV CONTAINER
+*/
+.extra-details__div-modal{
+    @apply text-center flex flex-row justify-center
+}
+.extra-details__img--modal{
+    width: 20%;
+}
+
+
+/*
+CLOSE BUTTON WRAPPER
+*/
+.close-modal--wrapper{
+    @apply text-right
+}
+.close-modal{
+    @apply cursor-pointer justify-end
+}
