@@ -3,6 +3,9 @@ import {useState} from "react";
 import './Modal.css';
 
 import {AiFillCloseCircle} from "react-icons/ai";
+import {DataSource} from "../Components/DataSource";
+import {getServerData} from "../Components/GetServerData";
+import {Abilities} from "../Components/Abilities";
 
 const ModalBackground = styled.div`
 position: fixed;
@@ -28,8 +31,6 @@ justify-content: space-between;
 
 export const Modal = ({children}) => {
     const [shouldShow, setShouldShow] = useState(false);
-
-    console.log(children)
     return (
         <>
             <div className="flex justify-center">
@@ -41,10 +42,9 @@ export const Modal = ({children}) => {
                 <ModalBackground>
                     <ModalBody onClick={(e) => e.stopPropagation()}>
                         <div className="close-modal--wrapper">
-                        <AiFillCloseCircle style={{fontSize: 40, color: "red"}} className="close-modal" onClick={() => setShouldShow(false)}/>
+                            <AiFillCloseCircle style={{fontSize: 40, color: "red"}} className="close-modal"
+                                               onClick={() => setShouldShow(false)}/>
                         </div>
-
-                        <p>Type: {children.types[1] ? children.types[1].type.name : "none"}</p>
                         <div className="extra-details__div-modal">
                             <img className="extra-details__img--modal" src={children.sprites.back_default}
                                  alt="pokemon-back"/>
@@ -53,6 +53,16 @@ export const Modal = ({children}) => {
 
                             <img className="extra-details__img--modal" src={children.sprites.back_shiny}
                                  alt="pokemon-shiny-back"/>
+                        </div>
+
+                        <div className="abilities-wrapper">
+                            <h1>Type:</h1>
+                            <h3 className="abilities">{children.types[1] ? children.types[1].type.name : " "}</h3>
+                            <DataSource
+                                getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon/${children.name}/`)}
+                                resourceName="abilities">
+                                <Abilities/>
+                            </DataSource>
                         </div>
                     </ModalBody>
                 </ModalBackground>
