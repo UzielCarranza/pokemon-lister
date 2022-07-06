@@ -19,3 +19,18 @@ CLOSE BUTTON WRAPPER
 .close-modal{
     @apply cursor-pointer justify-end
 }
+
+/*
+ABILITIES
+*/
+.abilities-wrapper{
+    width: 80%;
+    @apply  m-auto
+}
+.abilities{
+    @apply flex flex-row justify-around
+}
+
+.types{
+    @apply flex flex-row justify-between w-1/6 m-auto
+}
