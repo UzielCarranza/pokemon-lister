@@ -10,30 +10,26 @@ export const Stats = (props) => {
         }
     }, [props])
     return stats !== null ? (<>
-        <div>
-            <h1>{stats.stats[0].stat.name}</h1>
-            <p>{stats.stats[0].base_stat}</p>
+        <div className="stats-wrapper">
+            <h2>{stats.stats[0].stat.name}</h2>
+            <h5 className="stats">{stats.stats[0].base_stat}</h5>
 
 
-            <h1>{stats.stats[1].stat.name}</h1>
-            <p>{stats.stats[1].base_stat}</p>
+            <h2>{stats.stats[1].stat.name}</h2>
+            <h5>{stats.stats[1].base_stat}</h5>
 
-            <h1>{stats.stats[2].stat.name}</h1>
-            <p>{stats.stats[2].base_stat}</p>
+            <h2>{stats.stats[2].stat.name}</h2>
+            <h5>{stats.stats[2].base_stat}</h5>
 
-            <h1>{stats.stats[3].stat.name}</h1>
-            <p>{stats.stats[3].base_stat}</p>
+            <h2>{stats.stats[3].stat.name}</h2>
+            <h5>{stats.stats[3].base_stat}</h5>
 
-            <h1>{stats.stats[4].stat.name}</h1>
-            <p>{stats.stats[4].base_stat}</p>
+            <h2>{stats.stats[4].stat.name}</h2>
+            <h5>{stats.stats[4].base_stat}</h5>
 
-            <h1>{stats.stats[5].stat.name}</h1>
-            <p>{stats.stats[5].base_stat}</p>
-
-            <p>{stats.location_area_encounters}</p>
-
+            <h2>{stats.stats[5].stat.name}</h2>
+            <h5>{stats.stats[5].base_stat}</h5>
         </div>
-
 
     </>) : ""
 }
