@@ -10,27 +10,11 @@ export const Abilities = (props) => {
         }
     }, [props])
     return abilities !== null ? (<>
-        <div>
-            <h1>{abilities.stats[0].stat.name}</h1>
-            <p>{abilities.stats[0].base_stat}</p>
 
-
-            <h1>{abilities.stats[1].stat.name}</h1>
-            <p>{abilities.stats[1].base_stat}</p>
-
-            <h1>{abilities.stats[2].stat.name}</h1>
-            <p>{abilities.stats[2].base_stat}</p>
-
-            <h1>{abilities.stats[3].stat.name}</h1>
-            <p>{abilities.stats[3].base_stat}</p>
-
-            <h1>{abilities.stats[4].stat.name}</h1>
-            <p>{abilities.stats[4].base_stat}</p>
-
-            <h1>{abilities.stats[5].stat.name}</h1>
-            <p>{abilities.stats[5].base_stat}</p>
-
-            <p>{abilities.location_area_encounters}</p>
+        <h1>abilities: </h1>
+        <div className="abilities">
+            <h2>{abilities.abilities[0].ability.name ? abilities.abilities[0].ability.name : ' '}</h2>
+            <h2>{abilities.abilities[1].ability.name ? abilities.abilities[1].ability.name : ' '}</h2>
 
         </div>
 
