@@ -2,10 +2,13 @@ import styled from 'styled-components';
 import {useState} from "react";
 import './Modal.css';
 
-import {AiFillCloseCircle} from "react-icons/ai";
+import {AiFillBug, AiFillCloseCircle, AiFillFire} from "react-icons/ai";
 import {DataSource} from "../Components/DataSource";
 import {getServerData} from "../Components/GetServerData";
 import {Abilities} from "../Components/Abilities";
+import {FaCloudsmith} from "react-icons/fa";
+import {BiWater} from "react-icons/bi";
+import {RiEmotionNormalLine} from "react-icons/ri";
 
 const ModalBackground = styled.div`
 position: fixed;
@@ -30,6 +33,8 @@ justify-content: space-between;
 `;
 
 export const Modal = ({children}) => {
+
+    console.log(children)
     const [shouldShow, setShouldShow] = useState(false);
     return (
         <>
@@ -56,8 +61,18 @@ export const Modal = ({children}) => {
                         </div>
 
                         <div className="abilities-wrapper">
-                            <h1>Type:</h1>
-                            <h3 className="abilities">{children.types[1] ? children.types[1].type.name : " "}</h3>
+                            <h1>Type/s:</h1>
+                            <h3 className="types">{children.types[1] ? children.types[1].type.name : ""} <span>{
+                                children.types[0].type.name === 'grass' ? <div>Poisonous <FaCloudsmith style={{color: "green", fontSize: 20}}/></div>
+                                    : children.types[0].type.name === 'fire' ? <div>Fire <AiFillFire style={{color: "red", fontSize: 20}}/></div>
+
+                                        : children.types[0].type.name === 'water' ? <div>Water  <BiWater style={{color: "blue", fontSize: 20}}/></div>
+
+                                            : children.types[0].type.name === 'bug' ? <div>Bug <AiFillBug style={{color: "brown", fontSize: 20}}/></div>
+                                            : children.types[0].type.name === 'normal' ? <div>Normal <RiEmotionNormalLine style={{color: "black", fontSize: 20}}/></div>
+
+                                        : 'none'
+                            }</span></h3>
                             <DataSource
                                 getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon/${children.name}/`)}
                                 resourceName="abilities">
