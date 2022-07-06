@@ -25,11 +25,6 @@ export const PokemonsForms = (props) => {
             </DataSource>
             <Modal children={props.forms}/>
             <h3>{props.forms.types[0].type.name}</h3>
-
-            {/*<DataSource getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon/${props.forms.pokemon.name}/`)}*/}
-            {/*            resourceName="abilities" >*/}
-            {/*    <Abilities/>*/}
-            {/*</DataSource>*/}
         </div>
 
 
