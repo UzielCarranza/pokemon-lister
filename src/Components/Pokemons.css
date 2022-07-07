@@ -1,12 +1,11 @@
-
 /*
 CARDS WRAPPER
 */
-.pokemons-grid{
+.pokemons-grid {
     @apply grid grid-cols-4 gap-4
 }
 
-.wrapper{
+.wrapper {
     @apply mx-10 my-4 p-2 flex flex-col text-center
 }
 
@@ -14,28 +13,41 @@ CARDS WRAPPER
 /*
 CARDS
 */
-.card{
+.card {
     background: linear-gradient(90deg, #FDBB2D 0%, #22C1C3 100%);
-    @apply m-4 p-4 h-auto w-auto shadow-2xl
+    @apply h-auto w-auto shadow-2xl mt-8
 }
 
-.card-img{
+.card-img {
     height: 10em;
     @apply w-1/2 m-0 p-0 flex items-center m-auto bg-blue-50
 }
 
-.pokemon-name{
+.pokemon-name {
     @apply text-center
 }
 
+.form-type {
+    height: 5em;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
 
 /*
 STATS WRAPPER
 */
-.stats-wrapper{
-    @apply bg-blue-50 text-center h-auto flex flex-col justify-center
+.stats-wrapper {
+    @apply bg-blue-50 h-auto flex flex-row flex-wrap justify-around text-center items-center m-4 p-2
 }
 
-.stats{
-    @apply m-0 p-0
+.stats {
+    width: 25%;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000;
+    height: 8em;
+    @apply m-2 p-2
 }
