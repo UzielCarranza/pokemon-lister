@@ -1,6 +1,6 @@
 import {Pokemons} from "./Components/Pokemons";
-import {getServerData} from "./Components/GetServerData";
-import {DataSource} from "./Components/DataSource";
+import {getServerData} from "./Utils/GetServerData";
+import {DataSource} from "./Utils/DataSource";
 
 
 function App() {
