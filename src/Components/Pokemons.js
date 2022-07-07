@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import {getServerData} from "./GetServerData";
-import {DataSource} from "./DataSource";
+import {getServerData} from "../Utils/GetServerData";
+import {DataSource} from "../Utils/DataSource";
 import {PokemonsForms} from "./PokemonsForms";
 import './Pokemons.css';
 
