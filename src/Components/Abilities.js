@@ -9,12 +9,18 @@ export const Abilities = (props) => {
             setAbilities(props.abilities)
         }
     }, [props])
+    console.log(abilities)
     return abilities !== null ? (<>
 
         <h1>abilities: </h1>
+
         <div className="abilities">
             <h2>{abilities.abilities[0].ability.name ? abilities.abilities[0].ability.name : ' '}</h2>
-            <h2>{abilities.abilities[1].ability.name ? abilities.abilities[1].ability.name : ' '}</h2>
+
+            {abilities.abilities[1] ?
+                <h2>{abilities.abilities[1].ability.name ? abilities.abilities[1].ability.name : ' '}</h2>
+                : ' '
+            }
 
         </div>
 
