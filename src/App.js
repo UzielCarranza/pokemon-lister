@@ -7,7 +7,7 @@ function App() {
     return (
         <>
             <DataSource getDataFunc={getServerData('https://pokeapi.co/api/v2/pokemon/')} resourceName="pokemon" >
-                <Pokemons key={1}/>
+                <Pokemons/>
             </DataSource>
         </>
     )
