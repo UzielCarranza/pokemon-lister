@@ -33,11 +33,14 @@ export const Pokemons = (props) => {
 
     const getNextPage = url => async () => {
         const response = await axios.get(url);
-        console.log(response.data)
         setPokemons(response.data);
-        console.log(pokemons)
     }
 
+    const getPreviousPage = url => async () => {
+        const response = await axios.get(url);
+        setPokemons(response.data)
+
+    }
     return pokemons !== null ? (
         <>
             <section className="section">
@@ -91,7 +94,11 @@ export const Pokemons = (props) => {
                                 ))}
                             </div>
 
-                            <button onClick={getNextPage(pokemons.next)}>Next Page</button>
+                            <div className="next-previous--buttons">
+                                <button onClick={getPreviousPage(pokemons.previous)}>Previous Page</button>
+                                <button onClick={getNextPage(pokemons.next)}>Next Page</button>
+                            </div>
+
                         </>)
 
                 }
