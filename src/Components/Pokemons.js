@@ -24,14 +24,20 @@ export const Pokemons = (props) => {
         setSearchValue(poke)
     }
 
+    const resetSearch = () => {
+
+        document.getElementById("search-input").value = "";
+        setSearchValue(null)
+    }
+
 
     return pokemons !== null ? (
         <>
             <section className="section">
                 <div className="search">
-                <input type="text" onChange={(e) => setSearchByName(e.target.value)} placeholder="Search by name"/>
+                <input id="search-input" type="text" onChange={(e) => setSearchByName(e.target.value)} placeholder="Search by name"/>
                 <button onClick={search}>search</button>
-                <button onClick={() => setSearchValue(null)}>reset</button>
+                <button onClick={resetSearch}>reset</button>
                 </div>
 
 
