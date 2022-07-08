@@ -4,6 +4,7 @@ import {DataSource} from "../Utils/DataSource";
 import {PokemonsForms} from "./PokemonsForms";
 import './Pokemons.css';
 import {SiPokemon} from "react-icons/si";
+import axios from "axios";
 
 
 export const Pokemons = (props) => {
@@ -30,14 +31,21 @@ export const Pokemons = (props) => {
         setSearchValue(null)
     }
 
+    const getNextPage = url => async () => {
+        const response = await axios.get(url);
+        console.log(response.data)
+        setPokemons(response.data);
+        console.log(pokemons)
+    }
 
     return pokemons !== null ? (
         <>
             <section className="section">
                 <div className="search">
-                <input id="search-input" type="text" onChange={(e) => setSearchByName(e.target.value)} placeholder="Search by name"/>
-                <button onClick={search}>search</button>
-                <button onClick={resetSearch}>reset</button>
+                    <input id="search-input" type="text" onChange={(e) => setSearchByName(e.target.value)}
+                           placeholder="Search by name"/>
+                    <button onClick={search}>search</button>
+                    <button onClick={resetSearch}>reset</button>
                 </div>
 
 
@@ -53,6 +61,7 @@ export const Pokemons = (props) => {
 
                                 ))}
                             </div>
+
                             {
                                 searchValue.length >= 1 ? (
                                         " "
@@ -74,13 +83,15 @@ export const Pokemons = (props) => {
                             <div className="pokemons-grid">
                                 {pokemons.results.map((item, i) => (
                                     <DataSource key={pokemons.results[i].name}
-                                                getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon-form/${i}`)}
+                                                getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon-form/${pokemons.results[i].name}`)}
                                                 resourceName={"forms"}>
                                         <PokemonsForms key={pokemons.results[i].name}/>
                                     </DataSource>
 
                                 ))}
                             </div>
+
+                            <button onClick={getNextPage(pokemons.next)}>Next Page</button>
                         </>)
 
                 }
