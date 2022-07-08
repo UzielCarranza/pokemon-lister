@@ -47,7 +47,18 @@ export const Pokemons = (props) => {
 
                                 ))}
                             </div>
+                            {
+                                searchValue.length >= 1 ? (
+                                        " "
+                                    ) :
+                                    (
+                                        <div className="no-results">
+                                            <SiPokemon style={{fontSize: 800}}/>
+                                            <h1>Not found</h1>
+                                        </div>
+                                    )
 
+                            }
                         </>)
 
                     :
