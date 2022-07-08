@@ -2,7 +2,7 @@
 CARDS WRAPPER
 */
 .pokemons-grid {
-    @apply grid grid-cols-4 gap-4
+    @apply grid grid-cols-4 gap-4 m-4 p-4
 }
 
 .wrapper {
@@ -50,4 +50,23 @@ STATS WRAPPER
     border-color: #000;
     height: 8em;
     @apply m-2 p-2
+}
+
+.no-results{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.search{
+    @apply m-4 p-4
 }
