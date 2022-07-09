@@ -58,8 +58,8 @@ export const PokemonsForms = (props) => {
                                 : props.forms.types[0].type.name === 'normal' ?
 
                                     <h3 className="form-type"
-                                        style={{backgroundColor: 'white'}}>
-                                        <SiPokemon style={{fontSize: 100}} /></h3>
+                                        style={{backgroundColor: '#000'}}>
+                                        <SiPokemon style={{fontSize: 100, color: "yellow"}} /></h3>
                                     : ''
             }
         </div>
