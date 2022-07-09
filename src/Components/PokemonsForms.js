@@ -28,7 +28,6 @@ export const PokemonsForms = (props) => {
             setForms(props.forms)
         }
     }, [props])
-    console.log(forms)
     return forms !== null ? (<>
 
         <div className="card">

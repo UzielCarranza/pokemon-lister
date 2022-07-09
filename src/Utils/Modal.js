@@ -33,6 +33,7 @@ justify-content: space-between;
 `;
 
 export const Modal = ({children}) => {
+    // console.log(children.id)
 
     const [shouldShow, setShouldShow] = useState(false);
     return (

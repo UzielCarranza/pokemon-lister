@@ -5,8 +5,6 @@ import {PokemonsForms} from "./PokemonsForms";
 import './Pokemons.css';
 import {SiPokemon} from "react-icons/si";
 import axios from "axios";
-import {GrFormNext} from "react-icons/gr";
-import {IoIosArrowBack} from "react-icons/io";
 import {MdArrowBackIosNew, MdNavigateNext} from "react-icons/md";
 
 
