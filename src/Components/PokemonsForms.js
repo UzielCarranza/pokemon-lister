@@ -4,10 +4,20 @@ import {getServerData} from "../Utils/GetServerData";
 import {Stats} from "./Stats";
 import {Modal} from "../Utils/Modal";
 import {AiFillFire} from "react-icons/ai";
-import {GiElectric, GiExplodingPlanet, GiFairyWand, GiGrass, GiPoisonGas} from "react-icons/gi";
-import {MdWaterDrop} from "react-icons/md";
+import {
+    GiBatWing,
+    GiBoxingGloveSurprise, GiDragonSpiral,
+    GiElectric,
+    GiExplodingPlanet,
+    GiFairyWand, GiGhost,
+    GiGrass,
+    GiMagicPalm, GiMetalBar,
+    GiPoisonGas, GiRockGolem
+} from "react-icons/gi";
+import {MdDarkMode, MdWaterDrop} from "react-icons/md";
 import {BsFillBugFill} from "react-icons/bs";
 import {SiPokemon} from "react-icons/si";
+import {WiSnowflakeCold} from "react-icons/wi";
 
 export const PokemonsForms = (props) => {
     const [forms, setForms] = useState(null);
@@ -72,22 +82,136 @@ export const PokemonsForms = (props) => {
                                         : props.forms.types[0].type.name === 'ground' ?
                                             <h3 className="form-type"
                                                 style={{backgroundColor: 'brown'}}>
-                                                <GiExplodingPlanet style={{backgroundColor: "brown", color: "white", fontSize: 50}}/>
+                                                <GiExplodingPlanet
+                                                    style={{backgroundColor: "brown", color: "white", fontSize: 50}}/>
                                             </h3>
 
                                             : props.forms.types[0].type.name === 'fairy' ?
                                                 <h3 className="form-type"
                                                     style={{backgroundColor: 'pink'}}>
-                                                    <GiFairyWand style={{backgroundColor: "pink", color: "white", fontSize: 50}}/>
+                                                    <GiFairyWand
+                                                        style={{backgroundColor: "pink", color: "white", fontSize: 50}}/>
                                                 </h3>
 
+                                                : props.forms.types[0].type.name === 'fighting' ?
+                                                    <h3 className="form-type"
+                                                        style={{backgroundColor: 'black'}}>
+                                                        <GiBoxingGloveSurprise
+                                                            style={{
+                                                                backgroundColor: "black",
+                                                                color: "white",
+                                                                fontSize: 50
+                                                            }}/>
+                                                    </h3>
 
-                                        : props.forms.types[0].type.name === 'normal' ?
+                                                    : props.forms.types[0].type.name === 'psychic' ?
+                                                        <h3 className="form-type"
+                                                            style={{backgroundColor: 'black'}}>
+                                                            <GiMagicPalm
+                                                                style={{
+                                                                    backgroundColor: "black",
+                                                                    color: "yellow",
+                                                                    fontSize: 50
+                                                                }}/>
+                                                        </h3>
 
-                                            <h3 className="form-type"
-                                                style={{backgroundColor: '#000'}}>
-                                                <SiPokemon style={{fontSize: 100, color: "yellow"}}/></h3>
-                                            : ''
+                                                        : props.forms.types[0].type.name === 'rock' ?
+                                                            <h3 className="form-type"
+                                                                style={{backgroundColor: 'brown'}}>
+                                                                <GiRockGolem
+
+                                                                    style={{
+                                                                        backgroundColor: "brown",
+                                                                        color: "white",
+                                                                        fontSize: 50
+                                                                    }}/>
+                                                            </h3>
+
+                                                            : props.forms.types[0].type.name === 'ghost' ?
+                                                                <h3 className="form-type"
+                                                                    style={{backgroundColor: 'purple'}}>
+                                                                    <GiGhost
+
+                                                                        style={{
+                                                                            backgroundColor: "purple",
+                                                                            color: "white",
+                                                                            fontSize: 50
+                                                                        }}/>
+                                                                </h3>
+
+                                                                : props.forms.types[0].type.name === 'ice' ?
+                                                                    <h3 className="form-type"
+                                                                        style={{backgroundColor: 'blue'}}>
+                                                                        <WiSnowflakeCold
+
+                                                                            style={{
+                                                                                backgroundColor: "blue",
+                                                                                color: "white",
+                                                                                fontSize: 50
+                                                                            }}/>
+                                                                    </h3>
+
+
+                                                                    : props.forms.types[0].type.name === 'dragon' ?
+                                                                        <h3 className="form-type"
+                                                                            style={{backgroundColor: 'red'}}>
+                                                                            <GiDragonSpiral
+
+                                                                                style={{
+                                                                                    backgroundColor: "red",
+                                                                                    color: "white",
+                                                                                    fontSize: 50
+                                                                                }}/>
+                                                                        </h3>
+
+                                                                        : props.forms.types[0].type.name === 'dark' ?
+                                                                            <h3 className="form-type"
+                                                                                style={{backgroundColor: 'black'}}>
+                                                                                <MdDarkMode
+
+                                                                                    style={{
+                                                                                        backgroundColor: "black",
+                                                                                        color: "white",
+                                                                                        fontSize: 50
+                                                                                    }}/>
+                                                                            </h3>
+
+
+                                                                            : props.forms.types[0].type.name === 'steel' ?
+                                                                                <h3 className="form-type"
+                                                                                    style={{backgroundColor: 'grey'}}>
+                                                                                    <GiMetalBar
+
+                                                                                        style={{
+                                                                                            backgroundColor: "grey",
+                                                                                            color: "white",
+                                                                                            fontSize: 50
+                                                                                        }}/>
+                                                                                </h3>
+
+                                                                                : props.forms.types[0].type.name === 'flying' ?
+                                                                                    <h3 className="form-type"
+                                                                                        style={{backgroundColor: 'black'}}>
+                                                                                        <GiBatWing
+
+                                                                                            style={{
+                                                                                                backgroundColor: "black",
+                                                                                                color: "white",
+                                                                                                fontSize: 50
+                                                                                            }}/>
+                                                                                    </h3>
+
+                                                                        : props.forms.types[0].type.name === 'normal' ?
+
+                                                                            <h3 className="form-type"
+                                                                                style={{backgroundColor: '#000'}}>
+                                                                                <SiPokemon
+                                                                                    style={{
+                                                                                        fontSize: 100,
+                                                                                        color: "yellow"
+                                                                                    }}/>
+                                                                            </h3>
+                                                                            : ''
             }
         </div>
 
