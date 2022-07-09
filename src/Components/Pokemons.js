@@ -86,6 +86,10 @@ export const Pokemons = (props) => {
 
                     (
                         <>
+                            <div className="next-previous--buttons">
+                                <MdArrowBackIosNew className="back-btn" style={{fontSize: 30}} onClick={getPreviousPage(pokemons.previous)}/>
+                                <MdNavigateNext className="next-btn" style={{fontSize: 55}} onClick={getNextPage(pokemons.next)}/>
+                            </div>
                             <div className="pokemons-grid">
                                 {pokemons.results.map((item, i) => (
                                     <DataSource key={pokemons.results[i].name}
