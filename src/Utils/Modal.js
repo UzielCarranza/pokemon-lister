@@ -9,6 +9,7 @@ import {FaCloudsmith} from "react-icons/fa";
 import {RiEmotionNormalLine} from "react-icons/ri";
 import {MdCatchingPokemon} from "react-icons/md";
 import {GiBatWing} from "react-icons/gi";
+import {Species} from "../Components/Species";
 
 const ModalBackground = styled.div`
 position: fixed;
@@ -33,7 +34,6 @@ justify-content: space-between;
 `;
 
 export const Modal = ({children}) => {
-    // console.log(children.id)
 
     const [shouldShow, setShouldShow] = useState(false);
     return (
@@ -59,27 +59,34 @@ export const Modal = ({children}) => {
                         </div>
 
                         <div className="abilities-wrapper">
-                            <h1>Type/s:</h1>
-                            <h3 className="types">{children.types[1] ? children.types[1].type.name : ""}
+                            {/*<h1>Type/s:</h1>*/}
+                            {/*<h3 className="types">{children.types[1] ? children.types[1].type.name : ""}*/}
 
-                                { children.types[1] ? <span>{children.types[1].type.name === "poison" ?
-                                    <FaCloudsmith style={{color: "green", fontSize: 20}}/>
-                                    : children.types[1].type.name === 'flying' ?  <GiBatWing style={{color: "black", fontSize: 20}}/>
-                                        : ' '}
+                            {/*    { children.types[1] ? <span>{children.types[1].type.name === "poison" ?*/}
+                            {/*        <FaCloudsmith style={{color: "green", fontSize: 20}}/>*/}
+                            {/*        : children.types[1].type.name === 'flying' ?  <GiBatWing style={{color: "black", fontSize: 20}}/>*/}
+                            {/*            : ' '}*/}
 
-                                </span>   : <RiEmotionNormalLine style={{color: "black", fontSize: 20, textAlign: "center"}}/>
+                            {/*    </span>   : <RiEmotionNormalLine style={{color: "black", fontSize: 20, textAlign: "center"}}/>*/}
 
-                                }
+                            {/*    }*/}
 
 
-                            </h3>
+                            {/*</h3>*/}
 
+
+                            <DataSource
+                                getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon-species/${children.name}/`)}
+                                resourceName="species">
+                                <Species/>
+                            </DataSource>
 
                             <DataSource
                                 getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon/${children.name}/`)}
                                 resourceName="abilities">
                                 <Abilities/>
                             </DataSource>
+
                         </div>
                     </ModalBody>
                 </ModalBackground>
