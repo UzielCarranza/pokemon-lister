@@ -5,6 +5,9 @@ import {PokemonsForms} from "./PokemonsForms";
 import './Pokemons.css';
 import {SiPokemon} from "react-icons/si";
 import axios from "axios";
+import {GrFormNext} from "react-icons/gr";
+import {IoIosArrowBack} from "react-icons/io";
+import {MdArrowBackIosNew, MdNavigateNext} from "react-icons/md";
 
 
 export const Pokemons = (props) => {
@@ -95,8 +98,8 @@ export const Pokemons = (props) => {
                             </div>
 
                             <div className="next-previous--buttons">
-                                <button onClick={getPreviousPage(pokemons.previous)}>Previous Page</button>
-                                <button onClick={getNextPage(pokemons.next)}>Next Page</button>
+                                <MdArrowBackIosNew className="back-btn" style={{fontSize: 70}} onClick={getPreviousPage(pokemons.previous)}/>
+                                <MdNavigateNext className="next-btn" style={{fontSize: 105}} onClick={getNextPage(pokemons.next)}/>
                             </div>
 
                         </>)
