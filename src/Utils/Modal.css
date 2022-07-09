@@ -20,7 +20,8 @@ CLOSE BUTTON WRAPPER
     @apply cursor-pointer justify-end
 }
 .open-modal{
-    @apply  cursor-pointer flex justify-center m-4
+    width: 100%;
+    @apply  cursor-pointer flex justify-center mt-4
 }
 .open-modal-text{
     @apply  flex justify-center mt-4

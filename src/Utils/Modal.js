@@ -37,7 +37,6 @@ export const Modal = ({children}) => {
     const [shouldShow, setShouldShow] = useState(false);
     return (
         <>
-            <span className="open-modal-text">Click here for more details!</span>
             <div className="open-modal">
                 <MdCatchingPokemon style={{color: "white", backgroundColor: "red", fontSize: 60}} className="close-modal" onClick={() => setShouldShow(true)}/>
             </div>

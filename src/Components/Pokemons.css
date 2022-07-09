@@ -23,7 +23,6 @@ CARDS
     display: flex;
     flex-flow: row wrap;
     width: 24rem;
-    @apply p-4
 }
 
 .card-img {
@@ -44,11 +43,14 @@ CARDS
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    width: 100%;
+    margin-bottom: 0;
 }
 
 .img-section-wrapper{
     display: flex;
     flex-direction: row;
+    @apply m-4
 }
 
 /*
