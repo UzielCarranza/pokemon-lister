@@ -23,12 +23,15 @@ export const PokemonsForms = (props) => {
         <div className="card">
             <span style={{fontSize: 20, fontWeight: "bold", marginLeft: 20}}>{forms.types[0].type.name}</span>
             <h1 className="pokemon-name">{props.forms.pokemon.name}</h1>
+            <div className="img-section-wrapper">
             <img className="card-img" src={props.forms.sprites.front_default} alt=""/>
 
             <DataSource getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon/${props.forms.pokemon.name}/`)}
                         resourceName="stats">
                 <Stats/>
             </DataSource>
+            </div>
+
             <Modal children={props.forms}/>
             {
                 props.forms.types[0].type.name === 'grass' ?

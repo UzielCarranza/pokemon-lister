@@ -31,20 +31,20 @@ export const Stats = (props) => {
         <p>{stats.stats[2].base_stat}</p>
     </div>
 
-    {/*<div className="stats">*/}
-    {/*    <p>sp-attack</p>*/}
-    {/*    <p>{stats.stats[3].base_stat}</p>*/}
-    {/*</div>*/}
-    {/*<div className="stats">*/}
+    <div className="stats">
+        <p>sp-attack</p>
+        <p>{stats.stats[3].base_stat}</p>
+    </div>
+    <div className="stats">
 
-    {/*    <p>sp-def</p>*/}
-    {/*    <p>{stats.stats[4].base_stat}</p>*/}
-    {/*</div>*/}
+        <p>sp-def</p>
+        <p>{stats.stats[4].base_stat}</p>
+    </div>
 
-    {/*<div className="stats">*/}
-    {/*    <p>{stats.stats[5].stat.name}</p>*/}
-    {/*    <p>{stats.stats[5].base_stat}</p>*/}
-    {/*</div>*/}
+    <div className="stats">
+        <p>{stats.stats[5].stat.name}</p>
+        <p>{stats.stats[5].base_stat}</p>
+    </div>
     </section>
 
 </>) :
