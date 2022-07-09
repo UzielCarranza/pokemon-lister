@@ -2,7 +2,7 @@
 CARDS WRAPPER
 */
 .pokemons-grid {
-    @apply grid grid-cols-4 gap-4 m-4 p-4
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 m-4 p-4
 }
 
 .wrapper {
@@ -13,17 +13,27 @@ CARDS WRAPPER
 /*
 CARDS
 */
-.card {
+/*.card {*/
+/*    background: linear-gradient(90deg, #FDBB2D 0%, #22C1C3 100%);*/
+/*    @apply h-auto w-auto shadow-2xl mt-8 mx-4 px-4*/
+/*}*/
+
+.card{
     background: linear-gradient(90deg, #FDBB2D 0%, #22C1C3 100%);
-    @apply h-auto w-auto shadow-2xl mt-8
+    display: flex;
+    flex-flow: row wrap;
+    width: 24rem;
+    @apply p-4
 }
 
 .card-img {
     height: 10em;
-    @apply w-1/2 m-0 p-0 flex items-center m-auto bg-blue-50
+
+    @apply w-1/2 flex items-center bg-blue-50
 }
 
 .pokemon-name {
+    width: 100%;
     @apply text-center
 }
 
@@ -39,17 +49,19 @@ CARDS
 /*
 STATS WRAPPER
 */
-.stats-wrapper {
-    @apply bg-blue-50 h-auto flex flex-row flex-wrap justify-around text-center items-center m-4 p-2
+
+.stats-wrapper{
+    @apply grid grid-cols-3 md:grid-cols-3 px-2 items-center ml-4
 }
 
 .stats {
-    width: 25%;
-    border-width: 1px;
-    border-style: solid;
     border-color: #000;
+    text-align: center;
+    margin: 0;
     height: 8em;
-    @apply m-2 p-2
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
 }
 
 .no-results{
@@ -59,12 +71,8 @@ STATS WRAPPER
 }
 
 .section{
-
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
 }
 
 .search{

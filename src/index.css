@@ -13,9 +13,6 @@ code {
 }
 
 #root{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
+  @apply flex flex-col items-center
+
 }
