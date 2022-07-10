@@ -103,3 +103,30 @@ p{
     margin: 0;
     padding: 0;
 }
+
+
+/*
+ABILITIES
+*/
+
+.abilities{
+    width: 40%;
+    @apply grid md:grid-cols-3 h-20 md:h-10 items-center
+}
+
+
+/*
+HABITAT
+*/
+
+
+
+.habitat{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 40%;
+    margin: 0;
+    @apply items-center
+}
+
