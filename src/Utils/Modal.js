@@ -29,7 +29,9 @@ padding: 20px;
 width: 90%;
 height: auto;
 display: flex;
-flex-direction: column;
+flex-direction: row;
+
+    flex-wrap: wrap;
 justify-content: space-between;
 `;
 
@@ -58,7 +60,13 @@ export const Modal = ({children}) => {
                                  alt="pokemon-shiny-back"/>
                         </div>
 
-                        <div className="abilities-wrapper">
+                        <DataSource
+                            getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon-species/${children.name}/`)}
+                            resourceName="species">
+                            <Species/>
+                        </DataSource>
+
+                        {/*<div className="abilities-wrapper">*/}
                             {/*<h1>Type/s:</h1>*/}
                             {/*<h3 className="types">{children.types[1] ? children.types[1].type.name : ""}*/}
 
@@ -75,19 +83,14 @@ export const Modal = ({children}) => {
                             {/*</h3>*/}
 
 
-                            <DataSource
-                                getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon-species/${children.name}/`)}
-                                resourceName="species">
-                                <Species/>
-                            </DataSource>
 
-                            <DataSource
-                                getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon/${children.name}/`)}
-                                resourceName="abilities">
-                                <Abilities/>
-                            </DataSource>
+                        {/*</div>*/}
 
-                        </div>
+                        <DataSource
+                            getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon/${children.name}/`)}
+                            resourceName="abilities">
+                            <Abilities/>
+                        </DataSource>
                     </ModalBody>
                 </ModalBackground>
             )}
