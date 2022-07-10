@@ -12,7 +12,7 @@ import {BiWater} from "react-icons/bi";
 import {BsQuestionLg} from "react-icons/bs";
 
 
-export const Species = (props) => {
+export const SpeciesHabitat = (props) => {
     const [res, setRes] = useState(null)
 
     useEffect(() => {

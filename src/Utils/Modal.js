@@ -9,7 +9,7 @@ import {FaCloudsmith} from "react-icons/fa";
 import {RiEmotionNormalLine} from "react-icons/ri";
 import {MdCatchingPokemon} from "react-icons/md";
 import {GiBatWing} from "react-icons/gi";
-import {Species} from "../Components/Species";
+import {SpeciesHabitat} from "../Components/SpeciesHabitat";
 
 const ModalBackground = styled.div`
 position: fixed;
@@ -63,7 +63,7 @@ export const Modal = ({children}) => {
                         <DataSource
                             getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon-species/${children.name}/`)}
                             resourceName="species">
-                            <Species/>
+                            <SpeciesHabitat/>
                         </DataSource>
 
                         {/*<div className="abilities-wrapper">*/}
