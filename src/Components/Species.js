@@ -1,5 +1,15 @@
 import {useEffect, useState} from "react";
-import {GiCaveEntrance, GiFallingRocks, GiForest, GiGrassMushroom, GiMountainCave, GiRiver} from "react-icons/gi";
+import {
+    GiCaveEntrance,
+    GiFallingRocks,
+    GiForest,
+    GiGrassMushroom,
+    GiModernCity,
+    GiMountainCave,
+    GiRiver, GiWaterfall
+} from "react-icons/gi";
+import {BiWater} from "react-icons/bi";
+import {BsQuestionLg} from "react-icons/bs";
 
 
 export const Species = (props) => {
@@ -37,7 +47,7 @@ export const Species = (props) => {
                         res.habitat.name === 'waters-edge' ?
                             <div className="habitat">
                                 <p>Habitat: </p> <p>{res.habitat.name}</p>
-                                <GiRiver style={{color: "blue", fontSize: 50}}/>
+                                <GiWaterfall style={{color: "blue", fontSize: 50}}/>
                             </div>
 
 
@@ -68,7 +78,47 @@ export const Species = (props) => {
                                         </div>
 
 
-                                        : <p>{res.habitat.name}</p>
+                                        :
+
+                                        res.habitat.name === 'urban' ?
+                                            <div className="habitat">
+                                                <p>Habitat: </p> <p>{res.habitat.name}</p>
+                                                <GiModernCity
+                                                    style={{color: "black", fontSize: 50}}/>
+                                            </div>
+
+                                            :
+
+                                            res.habitat.name === 'sea' ?
+                                                <div className="habitat">
+                                                    <p>Habitat: </p> <p>{res.habitat.name}</p>
+                                                    <BiWater
+                                                        style={{color: "blue", fontSize: 50}}/>
+                                                </div>
+
+
+                                                :
+
+                                                res.habitat.name === 'rare' ?
+                                                    <div className="habitat">
+                                                        <p>Habitat: </p> <p>{res.habitat.name}</p>
+                                                        <BsQuestionLg
+                                                            style={{color: "black", fontSize: 40}}/>
+                                                    </div>
+
+
+                                                    :
+
+                                                    res.habitat.name !== undefined || true ?
+                                                        <div className="habitat">
+                                                            <p>Habitat: </p> <p>{res.habitat.name}</p>
+                                                            <BsQuestionLg
+                                                                style={{color: "black", fontSize: 40}}/>
+                                                        </div>
+
+                                                        :
+
+                                                        <p>Loading</p>
 
 
             }
