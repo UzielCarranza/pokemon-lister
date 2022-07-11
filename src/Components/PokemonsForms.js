@@ -34,7 +34,7 @@ export const PokemonsForms = (props) => {
             <span style={{fontSize: 20, fontWeight: "bold", marginLeft: 20}}>{forms.types[0].type.name}</span>
             <h1 className="pokemon-name">{props.forms.pokemon.name}</h1>
             <div className="img-section-wrapper">
-                <img className="card-img" src={props.forms.sprites.front_default} alt=""/>
+                <img className="card-img" src={props.forms.sprites.front_default} alt="pokemons"/>
 
                 <DataSource
                     getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon/${props.forms.pokemon.name}/`)}
@@ -200,17 +200,17 @@ export const PokemonsForms = (props) => {
                                                                                             }}/>
                                                                                     </h3>
 
-                                                                        : props.forms.types[0].type.name === 'normal' ?
+                                                                                    : props.forms.types[0].type.name === 'normal' ?
 
-                                                                            <h3 className="form-type"
-                                                                                style={{backgroundColor: '#000'}}>
-                                                                                <SiPokemon
-                                                                                    style={{
-                                                                                        fontSize: 100,
-                                                                                        color: "yellow"
-                                                                                    }}/>
-                                                                            </h3>
-                                                                            : ''
+                                                                                        <h3 className="form-type"
+                                                                                            style={{backgroundColor: '#000'}}>
+                                                                                            <SiPokemon
+                                                                                                style={{
+                                                                                                    fontSize: 100,
+                                                                                                    color: "yellow"
+                                                                                                }}/>
+                                                                                        </h3>
+                                                                                        : ''
             }
         </div>
 
