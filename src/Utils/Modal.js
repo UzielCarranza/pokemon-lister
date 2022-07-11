@@ -5,11 +5,9 @@ import {AiFillCloseCircle} from "react-icons/ai";
 import {DataSource} from "./DataSource";
 import {getServerData} from "./GetServerData";
 import {Abilities} from "../Components/Abilities";
-import {FaCloudsmith} from "react-icons/fa";
-import {RiEmotionNormalLine} from "react-icons/ri";
 import {MdCatchingPokemon} from "react-icons/md";
-import {GiBatWing} from "react-icons/gi";
 import {SpeciesHabitat} from "../Components/SpeciesHabitat";
+import {Evolutions} from "../Components/Evolutions";
 
 const ModalBackground = styled.div`
 position: fixed;
@@ -41,7 +39,8 @@ export const Modal = ({children}) => {
     return (
         <>
             <div className="open-modal">
-                <MdCatchingPokemon style={{color: "white", backgroundColor: "red", fontSize: 60}} className="close-modal" onClick={() => setShouldShow(true)}/>
+                <MdCatchingPokemon style={{color: "white", backgroundColor: "red", fontSize: 60}}
+                                   className="close-modal" onClick={() => setShouldShow(true)}/>
             </div>
             {shouldShow && (
                 <ModalBackground>
@@ -51,13 +50,11 @@ export const Modal = ({children}) => {
                                                onClick={() => setShouldShow(false)}/>
                         </div>
                         <div className="extra-details__div-modal">
-
-                            <img className="extra-details__img--modal" src={children.sprites.back_default}
-                                 alt="pokemon-back"/>
-                            <img className="extra-details__img--modal" src={children.sprites.front_shiny}
-                                 alt="pokemon-shiny-front"/>
-                            <img className="extra-details__img--modal" src={children.sprites.back_shiny}
-                                 alt="pokemon-shiny-back"/>
+                            <DataSource
+                                getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon-species/${children.name}/`)}
+                                resourceName="evolutions">
+                                <Evolutions/>
+                            </DataSource>
                         </div>
 
                         <DataSource
@@ -65,27 +62,6 @@ export const Modal = ({children}) => {
                             resourceName="species">
                             <SpeciesHabitat/>
                         </DataSource>
-
-                        {/*<div className="abilities-wrapper">*/}
-                            {/*<h1>Type/s:</h1>*/}
-                            {/*<h3 className="types">{children.types[1] ? children.types[1].type.name : ""}*/}
-
-                            {/*    { children.types[1] ? <span>{children.types[1].type.name === "poison" ?*/}
-                            {/*        <FaCloudsmith style={{color: "green", fontSize: 20}}/>*/}
-                            {/*        : children.types[1].type.name === 'flying' ?  <GiBatWing style={{color: "black", fontSize: 20}}/>*/}
-                            {/*            : ' '}*/}
-
-                            {/*    </span>   : <RiEmotionNormalLine style={{color: "black", fontSize: 20, textAlign: "center"}}/>*/}
-
-                            {/*    }*/}
-
-
-                            {/*</h3>*/}
-
-
-
-                        {/*</div>*/}
-
                         <DataSource
                             getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon/${children.name}/`)}
                             resourceName="abilities">
