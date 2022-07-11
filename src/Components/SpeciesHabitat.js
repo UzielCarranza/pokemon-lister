@@ -6,7 +6,7 @@ import {
     GiGrassMushroom,
     GiModernCity,
     GiMountainCave,
-    GiRiver, GiWaterfall
+    GiWaterfall
 } from "react-icons/gi";
 import {BiWater} from "react-icons/bi";
 import {BsQuestionLg} from "react-icons/bs";
@@ -18,8 +18,6 @@ export const SpeciesHabitat = (props) => {
     useEffect(() => {
         if (props !== null) {
             setRes(props.species)
-
-            console.log(res)
         }
     }, [props, res])
 
