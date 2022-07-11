@@ -9,7 +9,6 @@ export const Abilities = (props) => {
             setAbilities(props.abilities)
         }
     }, [props])
-    console.log(abilities)
     return abilities !== null ? (<>
 
 
