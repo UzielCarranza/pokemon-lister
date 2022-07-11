@@ -1,20 +1,36 @@
 import {useEffect, useState} from "react";
+import {EvolvesFrom} from "./EvolvesFrom";
+import {DataSource} from "../Utils/DataSource";
+import {getServerData} from "../Utils/GetServerData";
 
 
-export const EvolvesTo = (props) => {
-    const [evolvesTo, setEvolvesTo] = useState(null);
+export const Evolutions = (props) => {
+    const [evolutions, setEvolutions] = useState(null);
+    const [evolvesFrom, setEvolvesFrom] = useState(null);
+
     useEffect(() => {
-        if (props !== null){
-            setEvolvesTo(props.evolves)
+        if (props.evolutions !== null) {
+            setEvolutions(props.evolutions)
+            setEvolvesFrom(props.evolutions.evolves_from_species)
         }
     }, [props])
-    console.log(evolvesTo)
 
-    // return evolvesTo !== null ? (
-    //     <div>
-    //
-    //     </div>
-    // )
+    return evolutions !== null ? (
+        <>
 
-    return <p>loading</p>
+            {evolutions.evolves_from_species !== null ?
+
+
+                <DataSource
+                    getDataFunc={getServerData(evolvesFrom.url)}
+                    resourceName="evolves_from">
+
+                    <EvolvesFrom/>
+                </DataSource>
+
+                : ' '
+            }
+        </>
+    ) : <p>loading</p>
+
 }
