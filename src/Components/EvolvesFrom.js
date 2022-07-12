@@ -17,7 +17,6 @@ export const EvolvesFrom = (props) => {
         if (evolvesFrom !== null) {
             axios.get(`https://pokeapi.co/api/v2/pokemon/${evolvesFrom.name}/`)
                 .then(res => {
-                    console.log(res.data)
                     setPreviousForm(res.data)
                 })
         }
