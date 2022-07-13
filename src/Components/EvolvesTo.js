@@ -2,10 +2,12 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 
 export const EvolvesTo = ({url, pokemonName}) => {
+
     const [selectedPokemon, setSelectedPokemon] = useState(null);
     const [firstEvolution, setFirstEvolution] = useState(null)
-    const [data, setData] = useState(null);
     const [secondForm, setSecondForm] = useState(null);
+    console.log(secondForm, "second")
+
     useEffect(() => {
         if (pokemonName !== null) {
             setSelectedPokemon(pokemonName)
@@ -22,18 +24,12 @@ export const EvolvesTo = ({url, pokemonName}) => {
             if (selectedPokemon === firstEvolution.chain.species.name) {
                 axios.get(`https://pokeapi.co/api/v2/pokemon-form/${firstEvolution.chain.evolves_to[0].species.name}`)
                     .then(res => {
-                        setData(res.data)
+                        setSecondForm({ name: firstEvolution.chain.evolves_to[0].species.name,
+                            img: res.data.sprites.front_default})
                     })
-                if (data !== null) {
-                    setSecondForm({
-                        name: firstEvolution.chain.evolves_to[0].species.name,
-                        img: data.sprites.front_default
-                    })
-                }
-
             }
         }
-    }, [data, firstEvolution, selectedPokemon])
+    }, [firstEvolution, selectedPokemon])
 
     return secondForm !== null ? (
         <div>
