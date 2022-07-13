@@ -20,16 +20,21 @@ export const EvolvesTo = ({url, pokemonName}) => {
 
     useEffect(() => {
         if (firstEvolution !== null) {
-            // if selected pokemon's name is equal to the pokemon in chain of evolution
-            if (selectedPokemon === firstEvolution.chain.species.name) {
-                axios.get(`https://pokeapi.co/api/v2/pokemon-form/${firstEvolution.chain.evolves_to[0].species.name}`)
-                    .then(res => {
-                        setSecondForm({
-                            name: firstEvolution.chain.evolves_to[0].species.name,
-                            img: res.data.sprites.front_default
+            console.log(firstEvolution)
+            if (firstEvolution.chain.species !== undefined) {
+                // if selected pokemon's name is equal to the pokemon in chain of evolution
+                if (selectedPokemon === firstEvolution.chain.species.name && firstEvolution.chain === true) {
+                    axios.get(`https://pokeapi.co/api/v2/pokemon-form/${firstEvolution.chain.evolves_to[0].species.name}`)
+                        .then(res => {
+                            setSecondForm({
+                                name: firstEvolution.chain.evolves_to[0].species.name,
+                                img: res.data.sprites.front_default
+                            })
                         })
-                    })
 
+                } else{
+                    console.log("does not evolves")
+                }
             }
             //if it is not the same
             else if (selectedPokemon !== firstEvolution.chain.species.name) {
@@ -55,8 +60,6 @@ export const EvolvesTo = ({url, pokemonName}) => {
                         }
 
                     })
-            } else {
-                console.log("none")
             }
         }
 
