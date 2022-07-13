@@ -33,28 +33,30 @@ export const EvolvesTo = ({url, pokemonName}) => {
             }
             //if it is not the same
             else if (selectedPokemon !== firstEvolution.chain.species.name) {
-
                 // do a get request based on the pokemon's name
                 axios.get(`https://pokeapi.co/api/v2/pokemon-species/${selectedPokemon}/`)
                     .then(res => {
                         // if it matches the name of the pokemon to the current evolution
                         if (res.data.name === selectedPokemon) {
-                            console.log(res.data)
                             // do a get request to get the image of the pokemon
                             axios.get(`${res.data.evolution_chain.url}`)
                                 .then(res => {
                                     axios.get(`https://pokeapi.co/api/v2/pokemon-form/${res.data.chain.evolves_to[0].evolves_to[0].species.name}`)
                                         .then(res => {
-                                            setSecondForm({
-                                                name: res.data.name,
-                                                img: res.data.sprites.front_default
-                                            })
+                                            if (res.data.name !== selectedPokemon) {
+                                                setSecondForm({
+                                                    name: res.data.name,
+                                                    img: res.data.sprites.front_default
+                                                })
+                                            }
                                         })
 
                                 })
                         }
 
                     })
+            } else {
+                console.log("none")
             }
         }
 
