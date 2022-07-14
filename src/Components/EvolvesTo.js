@@ -20,10 +20,10 @@ export const EvolvesTo = ({url, pokemonName}) => {
 
     useEffect(() => {
         if (firstEvolution !== null) {
-            console.log(firstEvolution)
             if (firstEvolution.chain.species !== undefined) {
                 // if selected pokemon's name is equal to the pokemon in chain of evolution
-                if (selectedPokemon === firstEvolution.chain.species.name && firstEvolution.chain === true) {
+                console.log(firstEvolution)
+                if (selectedPokemon === firstEvolution.chain.species.name && firstEvolution.chain.evolves_to.length >= 1) {
                     axios.get(`https://pokeapi.co/api/v2/pokemon-form/${firstEvolution.chain.evolves_to[0].species.name}`)
                         .then(res => {
                             setSecondForm({
@@ -32,34 +32,33 @@ export const EvolvesTo = ({url, pokemonName}) => {
                             })
                         })
 
-                } else{
-                    console.log("does not evolves")
                 }
-            }
-            //if it is not the same
-            else if (selectedPokemon !== firstEvolution.chain.species.name) {
-                // do a get request based on the pokemon's name
-                axios.get(`https://pokeapi.co/api/v2/pokemon-species/${selectedPokemon}/`)
-                    .then(res => {
-                        // if it matches the name of the pokemon to the current evolution
-                        if (res.data.name === selectedPokemon) {
-                            // do a get request to get the image of the pokemon
-                            axios.get(`${res.data.evolution_chain.url}`)
-                                .then(res => {
-                                    axios.get(`https://pokeapi.co/api/v2/pokemon-form/${res.data.chain.evolves_to[0].evolves_to[0].species.name}`)
-                                        .then(res => {
-                                            if (res.data.name !== selectedPokemon) {
-                                                setSecondForm({
-                                                    name: res.data.name,
-                                                    img: res.data.sprites.front_default
-                                                })
-                                            }
-                                        })
 
-                                })
-                        }
+                //if it is not the same
+                else if (selectedPokemon !== firstEvolution.chain.species.name) {
+                    // do a get request based on the pokemon's name
+                    axios.get(`https://pokeapi.co/api/v2/pokemon-species/${selectedPokemon}/`)
+                        .then(res => {
+                            // if it matches the name of the pokemon to the current evolution
+                            if (res.data.name === selectedPokemon) {
+                                // do a get request to get the image of the pokemon
+                                axios.get(`${res.data.evolution_chain.url}`)
+                                    .then(res => {
+                                        axios.get(`https://pokeapi.co/api/v2/pokemon-form/${res.data.chain.evolves_to[0].evolves_to[0].species.name}`)
+                                            .then(res => {
+                                                if (res.data.name !== selectedPokemon) {
+                                                    setSecondForm({
+                                                        name: res.data.name,
+                                                        img: res.data.sprites.front_default
+                                                    })
+                                                }
+                                            })
 
-                    })
+                                    })
+                            }
+
+                        })
+                }
             }
         }
 
