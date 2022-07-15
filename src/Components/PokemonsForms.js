@@ -18,6 +18,7 @@ import {MdDarkMode, MdWaterDrop} from "react-icons/md";
 import {BsFillBugFill} from "react-icons/bs";
 import {SiPokemon} from "react-icons/si";
 import {WiSnowflakeCold} from "react-icons/wi";
+import {ToLocalStorage} from "../Utils/ToLocalStorage";
 
 export const PokemonsForms = (props) => {
     const [forms, setForms] = useState(null);
@@ -31,6 +32,7 @@ export const PokemonsForms = (props) => {
     return forms !== null ? (<>
 
         <div className="card">
+            <button onClick={() => ToLocalStorage(props.forms.pokemon.name)}>click</button>
             <span style={{fontSize: 20, fontWeight: "bold", marginLeft: 20}}>{forms.types[0].type.name}</span>
             <h1 className="pokemon-name">{props.forms.pokemon.name}</h1>
             <div className="img-section-wrapper">
