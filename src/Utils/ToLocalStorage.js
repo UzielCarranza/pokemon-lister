@@ -1,5 +1,4 @@
 export const ToLocalStorage = (pokemon) => {
-
-    localStorage.setItem("favorites", JSON.stringify(pokemon));
+    localStorage.setItem(`${pokemon}`, JSON.stringify(pokemon));
 
 }
