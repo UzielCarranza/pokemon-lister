@@ -6,6 +6,7 @@ import './Pokemons.css';
 import {SiPokemon} from "react-icons/si";
 import axios from "axios";
 import {MdArrowBackIosNew, MdNavigateNext} from "react-icons/md";
+import {Favorites} from "./Favorites";
 
 
 export const Pokemons = (props) => {
@@ -51,6 +52,7 @@ export const Pokemons = (props) => {
                     <button onClick={search}>search</button>
                     <button onClick={resetSearch}>reset</button>
                 </div>
+                <Favorites/>
 
 
                 {searchValue !== null ? (
@@ -85,8 +87,10 @@ export const Pokemons = (props) => {
                     (
                         <>
                             <div className="next-previous--buttons">
-                                <MdArrowBackIosNew className="back-btn" style={{fontSize: 30}} onClick={getPreviousPage(pokemons.previous)}/>
-                                <MdNavigateNext className="next-btn" style={{fontSize: 55}} onClick={getNextPage(pokemons.next)}/>
+                                <MdArrowBackIosNew className="back-btn" style={{fontSize: 30}}
+                                                   onClick={getPreviousPage(pokemons.previous)}/>
+                                <MdNavigateNext className="next-btn" style={{fontSize: 55}}
+                                                onClick={getNextPage(pokemons.next)}/>
                             </div>
                             <div className="pokemons-grid">
                                 {pokemons.results.map((item, i) => (
@@ -100,8 +104,10 @@ export const Pokemons = (props) => {
                             </div>
 
                             <div className="next-previous--buttons">
-                                <MdArrowBackIosNew className="back-btn" style={{fontSize: 70}} onClick={getPreviousPage(pokemons.previous)}/>
-                                <MdNavigateNext className="next-btn" style={{fontSize: 105}} onClick={getNextPage(pokemons.next)}/>
+                                <MdArrowBackIosNew className="back-btn" style={{fontSize: 70}}
+                                                   onClick={getPreviousPage(pokemons.previous)}/>
+                                <MdNavigateNext className="next-btn" style={{fontSize: 105}}
+                                                onClick={getNextPage(pokemons.next)}/>
                             </div>
 
                         </>)
