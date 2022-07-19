@@ -6,7 +6,7 @@ import './Pokemons.css';
 import {SiPokemon} from "react-icons/si";
 import axios from "axios";
 import {MdArrowBackIosNew, MdNavigateNext} from "react-icons/md";
-import {Favorites} from "./Favorites";
+import {NavLink} from "react-router-dom";
 
 
 export const Pokemons = (props) => {
@@ -51,8 +51,10 @@ export const Pokemons = (props) => {
                            placeholder="Search by name"/>
                     <button onClick={search}>search</button>
                     <button onClick={resetSearch}>reset</button>
+                    <button>
+                        <NavLink style={{padding: 12, textDecoration: 'none'}} to="/favorites"> Favorites </NavLink>
+                    </button>
                 </div>
-                <Favorites/>
 
 
                 {searchValue !== null ? (
