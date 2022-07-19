@@ -130,3 +130,16 @@ HABITAT
     @apply items-center
 }
 
+
+/*
+FAVORITES
+*/
+
+.{
+    @apply animate-bounce m-2 w-6 h-6
+}
+
+.unselected-favorite{
+    @apply w-6 h-6
+}
+
