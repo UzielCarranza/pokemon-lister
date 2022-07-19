@@ -135,7 +135,7 @@ HABITAT
 FAVORITES
 */
 
-.{
+.selected-favorite{
     @apply animate-bounce m-2 w-6 h-6
 }
 
