@@ -3,7 +3,7 @@ import {DataSource} from "../Utils/DataSource";
 import {getServerData} from "../Utils/GetServerData";
 import {Stats} from "./Stats";
 import {Modal} from "../Utils/Modal";
-import {AiFillFire} from "react-icons/ai";
+import {AiFillFire, AiOutlineStar, AiTwotoneStar} from "react-icons/ai";
 import {
     GiBatWing,
     GiBoxingGloveSurprise, GiDragonSpiral,
@@ -23,23 +23,38 @@ import {getFromLocalStorage} from "../Utils/getFromLocalStorage";
 
 export const PokemonsForms = (props) => {
     const [forms, setForms] = useState(null);
+    const [favorite, setFavorite] = useState(false);
 
 
     useEffect(() => {
         if (props.forms !== null) {
             setForms(props.forms)
+                let fav = getFromLocalStorage();for (let i = 0; i <= fav.length; i++) {
+                        if (fav[i] === props.forms.pokemon.name) {
+                            setFavorite(true)
+                        }
+                    }
+
         }
     }, [props])
 
-
     const localStorageTrigger = () => {
+        setFavorite(true)
         toLocalStorage(props.forms.pokemon.name);
-        getFromLocalStorage()
     }
+    const removeFavorite = () => {
+        setFavorite(false)
+    }
+
     return forms !== null ? (<>
 
+
         <div className="card">
-            <button onClick={localStorageTrigger}>click</button>
+            {favorite === true ?
+                <AiTwotoneStar className='selected-favorite' style={{color: "yellow"}} onClick={removeFavorite}/>
+                :
+                <AiTwotoneStar className='unselected-favorite' style={{color: '#fff'}} onClick={localStorageTrigger}/>
+            }
             <span style={{fontSize: 20, fontWeight: "bold", marginLeft: 20}}>{forms.types[0].type.name}</span>
             <h1 className="pokemon-name">{props.forms.pokemon.name}</h1>
             <div className="img-section-wrapper">
