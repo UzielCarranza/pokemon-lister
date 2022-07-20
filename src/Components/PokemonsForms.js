@@ -20,6 +20,7 @@ import {SiPokemon} from "react-icons/si";
 import {WiSnowflakeCold} from "react-icons/wi";
 import {toLocalStorage} from "../Utils/toLocalStorage";
 import {getFromLocalStorage} from "../Utils/getFromLocalStorage";
+import {removeFromLocalStorage} from "../Utils/removeFromLocalStorage";
 
 export const PokemonsForms = (props) => {
     const [forms, setForms] = useState(null);
@@ -29,11 +30,12 @@ export const PokemonsForms = (props) => {
     useEffect(() => {
         if (props.forms !== null) {
             setForms(props.forms)
-                let fav = getFromLocalStorage();for (let i = 0; i <= fav.length; i++) {
-                        if (fav[i] === props.forms.pokemon.name) {
-                            setFavorite(true)
-                        }
-                    }
+            let fav = getFromLocalStorage();
+            for (let i = 0; i <= fav.length; i++) {
+                if (fav[i] === props.forms.pokemon.name) {
+                    setFavorite(true)
+                }
+            }
 
         }
     }, [props])
@@ -44,6 +46,7 @@ export const PokemonsForms = (props) => {
     }
     const removeFavorite = () => {
         setFavorite(false)
+        removeFromLocalStorage(props.forms.pokemon.name)
     }
 
     return forms !== null ? (<>
