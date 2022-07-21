@@ -7,6 +7,7 @@ import {SiPokemon} from "react-icons/si";
 import axios from "axios";
 import {MdArrowBackIosNew, MdNavigateNext} from "react-icons/md";
 import {NavLink} from "react-router-dom";
+import {paginationByOffsets, PaginationByOffsets} from "./paginationByOffsets";
 
 
 export const Pokemons = (props) => {
@@ -43,6 +44,9 @@ export const Pokemons = (props) => {
         setPokemons(response.data)
 
     }
+
+    let pagination = paginationByOffsets();
+
     return pokemons !== null ? (
         <>
             <section className="section">
@@ -115,9 +119,16 @@ export const Pokemons = (props) => {
                         </>)
 
                 }
-
+                <div className="pokemons-grid">
+                    {pagination.map((item, i) => (
+                        <button
+                            onClick={getNextPage(`https://pokeapi.co/api/v2/pokemon/?offset=${pagination[i]}&limit=20`)}
+                            key={pagination[i]}>next: {pagination[i]}</button>
+                    ))}
+                </div>
 
             </section>
+
 
 
         </>) : <p>loading</p>
