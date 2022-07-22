@@ -15,17 +15,19 @@ export const Pokemons = (props) => {
     const [searchValue, setSearchValue] = useState(null)
     const [searchByName, setSearchByName] = useState("");
 
-
     useEffect(() => {
         if (props.pokemon !== null) {
             setPokemons(props.pokemon)
         }
     }, [props])
 
+    const search = ()  => {
+        const response =  axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=20&limit=1000`)
+            .then(response => {
 
-    const search = () => {
-        const poke = pokemons.results.filter(value => value.name.toLowerCase().includes(searchByName.toLowerCase()))
-        setSearchValue(poke)
+                const poke = response.data.results.filter(value => value.name.toLowerCase().includes(searchByName.toLowerCase()))
+                setSearchValue(poke)
+            })
     }
 
     const resetSearch = () => {
