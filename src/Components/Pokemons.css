@@ -143,3 +143,12 @@ FAVORITES
     @apply w-6 h-6
 }
 
+
+
+/*
+PAGINATION
+*/
+
+.pagination{
+    @apply grid grid-cols-4
+}
