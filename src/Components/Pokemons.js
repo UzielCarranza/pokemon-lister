@@ -14,6 +14,8 @@ export const Pokemons = (props) => {
     const [pokemons, setPokemons] = useState(null);
     const [searchValue, setSearchValue] = useState(null)
     const [searchByName, setSearchByName] = useState("");
+    const [objPagination, setObjPagination] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
         if (props.pokemon !== null) {
@@ -21,8 +23,8 @@ export const Pokemons = (props) => {
         }
     }, [props])
 
-    const search = ()  => {
-        const response =  axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=20&limit=1000`)
+    const search = () => {
+        const response = axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=20&limit=1000`)
             .then(response => {
 
                 const poke = response.data.results.filter(value => value.name.toLowerCase().includes(searchByName.toLowerCase()))
@@ -47,93 +49,113 @@ export const Pokemons = (props) => {
 
     }
 
-    let pagination = paginationByOffsets();
+
+    useEffect(() => {
+        if (objPagination !== null) {
+            const response = axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=${objPagination.offset}&limit=20`)
+                .then( res => { setPokemons(res.data)
+                    setCurrentPage(objPagination.page)
+                })
+        }
+    }, [objPagination])
+
+
 
     return pokemons !== null ? (
-        <>
-            <section className="section">
-                <div className="search">
-                    <input id="search-input" type="text" onChange={(e) => setSearchByName(e.target.value)}
-                           placeholder="Search by name"/>
-                    <button onClick={search}>search</button>
-                    <button onClick={resetSearch}>reset</button>
-                    <button>
-                        <NavLink style={{padding: 12, textDecoration: 'none'}} to="/favorites"> Favorites </NavLink>
-                    </button>
-                </div>
+            <>
+                <section className="section">
+                    <div className="search">
+                        <input id="search-input" type="text" onChange={(e) => setSearchByName(e.target.value)}
+                               placeholder="Search by name"/>
+                        <button onClick={search}>search</button>
+                        <button onClick={resetSearch}>reset</button>
+                        <button>
+                            <NavLink style={{padding: 12, textDecoration: 'none'}} to="/favorites"> Favorites </NavLink>
+                        </button>
+                        { currentPage > 0 ?
+                            <p> Displaying results for page : {currentPage}</p>
+                            : ""
+                        }
+                    </div>
 
 
-                {searchValue !== null ? (
-                        <>
-                            <div className="pokemons-grid">
-                                {searchValue.map((item, i) => (
-                                    <DataSource key={searchValue[i].name}
-                                                getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon-form/${searchValue[i].name}`)}
-                                                resourceName={"forms"}>
-                                        <PokemonsForms key={searchValue[i].name}/>
-                                    </DataSource>
+                    {searchValue !== null ? (
+                            <>
+                                <div className="pokemons-grid">
+                                    {searchValue.map((item, i) => (
+                                        <DataSource key={searchValue[i].name}
+                                                    getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon-form/${searchValue[i].name}`)}
+                                                    resourceName={"forms"}>
+                                            <PokemonsForms key={searchValue[i].name}/>
+                                        </DataSource>
 
-                                ))}
-                            </div>
+                                    ))}
+                                </div>
 
-                            {
-                                searchValue.length >= 1 ? (
-                                        " "
-                                    ) :
-                                    (
-                                        <div className="no-results">
-                                            <SiPokemon style={{fontSize: 800}}/>
-                                            <h1>Not found</h1>
-                                        </div>
-                                    )
+                                {
+                                    searchValue.length >= 1 ? (
+                                            " "
+                                        ) :
+                                        (
+                                            <div className="no-results">
+                                                <SiPokemon style={{fontSize: 800}}/>
+                                                <h1>Not found</h1>
+                                            </div>
+                                        )
 
-                            }
-                        </>)
+                                }
+                            </>)
 
-                    :
+                        :
 
-                    (
-                        <>
-                            <div className="next-previous--buttons">
-                                <MdArrowBackIosNew className="back-btn" style={{fontSize: 30}}
-                                                   onClick={getPreviousPage(pokemons.previous)}/>
-                                <MdNavigateNext className="next-btn" style={{fontSize: 55}}
-                                                onClick={getNextPage(pokemons.next)}/>
-                            </div>
-                            <div className="pokemons-grid">
-                                {pokemons.results.map((item, i) => (
-                                    <DataSource key={pokemons.results[i].name}
-                                                getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon-form/${pokemons.results[i].name}`)}
-                                                resourceName={"forms"}>
-                                        <PokemonsForms key={pokemons.results[i].name}/>
-                                    </DataSource>
+                        (
+                            <>
+                                <div className="next-previous--buttons">
+                                    <MdArrowBackIosNew className="back-btn" style={{fontSize: 30}}
+                                                       onClick={getPreviousPage(pokemons.previous)}/>
+                                    <MdNavigateNext className="next-btn" style={{fontSize: 55}}
+                                                    onClick={getNextPage(pokemons.next)}/>
+                                </div>
+                                <div className="pokemons-grid">
+                                    {pokemons.results.map((item, i) => (
+                                        <DataSource key={pokemons.results[i].name}
+                                                    getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon-form/${pokemons.results[i].name}`)}
+                                                    resourceName={"forms"}>
+                                            <PokemonsForms key={pokemons.results[i].name}/>
+                                        </DataSource>
 
-                                ))}
-                            </div>
+                                    ))}
+                                </div>
+                            </>)
 
-                            <div className="next-previous--buttons">
-                                <MdArrowBackIosNew className="back-btn" style={{fontSize: 70}}
-                                                   onClick={getPreviousPage(pokemons.previous)}/>
-                                <MdNavigateNext className="next-btn" style={{fontSize: 105}}
-                                                onClick={getNextPage(pokemons.next)}/>
-                            </div>
+                    }
 
-                        </>)
-
-                }
-                <div className="pokemons-grid">
-                    {pagination.map((item, i) => (
-                        <button
-                            onClick={getNextPage(`https://pokeapi.co/api/v2/pokemon/?offset=${pagination[i]}&limit=20`)}
-                            key={pagination[i]}>next: {pagination[i]}</button>
-                    ))}
-                </div>
-
-            </section>
+                    <div className="pagination">
 
 
+                        <MdArrowBackIosNew className="back-btn" style={{fontSize: 70}}/>
+                        {pagination.map((item, i) => (
+                            <button
 
-        </>) : <p>loading</p>
+                                onClick={() => setObjPagination(pagination[i])}
+
+                                key={pagination[i].page}
+                                id={pagination[i].page}
+
+                            >
+                                page: {pagination[i].page}
+
+                            </button>
+                        ))}
+
+                        <MdNavigateNext className="next-btn" style={{fontSize: 105}}
+                                        onClick={getNextPage(pokemons.next)}/>
+                    </div>
+                </section>
+
+
+            </>) :
+        <p>404</p>
 
 
 }
