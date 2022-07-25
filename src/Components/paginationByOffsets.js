@@ -8,11 +8,12 @@ export const paginationByOffsets = () => {
             offset = offset + 20
             arr.push(offset)
 
-            page += 1;
             pages[page] = {
                 page: page,
                 offset: offset
             }
+
+            page += 1;
         }
     }
     return pages;
