@@ -54,7 +54,7 @@ export const Pokemons = (props) => {
         if (objPagination !== null) {
             const response = axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=${objPagination.offset}&limit=20`)
                 .then( res => { setPokemons(res.data)
-                    setCurrentPage(objPagination.page)
+                    setCurrentPage(objPagination.page + 2)
                 })
         }
     }, [objPagination])
@@ -145,7 +145,7 @@ export const Pokemons = (props) => {
                                 id={pagination[i].page}
 
                             >
-                                page: {pagination[i].page}
+                                page: {pagination[i].page + 2}
 
                             </button>
                         ))}
