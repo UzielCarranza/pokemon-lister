@@ -60,6 +60,8 @@ export const Pokemons = (props) => {
     }, [objPagination])
 
 
+    let pagination = paginationByOffsets();
+
 
     return pokemons !== null ? (
             <>
