@@ -16,6 +16,7 @@ export const Pokemons = (props) => {
     const [searchByName, setSearchByName] = useState("");
     const [objPagination, setObjPagination] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
+    const [paginationBy10, setPaginationBy10] = useState(null);
 
     useEffect(() => {
         if (props.pokemon !== null) {
@@ -53,14 +54,43 @@ export const Pokemons = (props) => {
     useEffect(() => {
         if (objPagination !== null) {
             const response = axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=${objPagination.offset}&limit=20`)
-                .then( res => { setPokemons(res.data)
-                    setCurrentPage(objPagination.page + 2)
-                })
+                .then(res => {
+                    setPokemons(res.data)
+                    setCurrentPage(objPagination.page + 1)
+                }).catch(error => {console.log(error)})
         }
     }, [objPagination])
 
 
     let pagination = paginationByOffsets();
+
+    useEffect(() => {
+        let newArr = [];
+        let limit = 10;
+        if (currentPage === 10) {
+            limit += 10
+            for (let i = currentPage; i < limit; i++) {
+                newArr.push(pagination[i])
+            }
+        } else if (currentPage === 20) {
+            limit = 30
+            for (let i = currentPage; i < limit; i++) {
+                newArr.push(pagination[i])
+            }
+        }
+        else if (currentPage === 30){
+            limit = 40;
+            for (let i = currentPage; i < limit; i++) {
+                newArr.push(pagination[i])
+            }
+        }
+            else {
+            for (let i = currentPage; i < limit; i++) {
+                newArr.push(pagination[i])
+            }
+        }
+        setPaginationBy10(newArr);
+    }, [currentPage])
 
 
     return pokemons !== null ? (
@@ -74,7 +104,7 @@ export const Pokemons = (props) => {
                         <button>
                             <NavLink style={{padding: 12, textDecoration: 'none'}} to="/favorites"> Favorites </NavLink>
                         </button>
-                        { currentPage > 0 ?
+                        {currentPage > 0 ?
                             <p> Displaying results for page : {currentPage}</p>
                             : ""
                         }
@@ -136,16 +166,30 @@ export const Pokemons = (props) => {
 
 
                         <MdArrowBackIosNew className="back-btn" style={{fontSize: 70}}/>
-                        {pagination.map((item, i) => (
+                        {/*{pagination.map((item, i) => (*/}
+                        {/*    <button*/}
+
+                        {/*        onClick={() => setObjPagination(pagination[i])}*/}
+
+                        {/*        key={pagination[i].page}*/}
+                        {/*        id={pagination[i].page}*/}
+
+                        {/*    >*/}
+                        {/*        page: {pagination[i].page + 2}*/}
+
+                        {/*    </button>*/}
+                        {/*))}*/}
+
+                        {paginationBy10.map((item, i) => (
                             <button
 
-                                onClick={() => setObjPagination(pagination[i])}
+                                onClick={() => setObjPagination(paginationBy10[i])}
 
-                                key={pagination[i].page}
-                                id={pagination[i].page}
+                                key={paginationBy10[i].page}
+                                id={paginationBy10[i].page}
 
                             >
-                                page: {pagination[i].page + 2}
+                                page: {paginationBy10[i].page + 1}
 
                             </button>
                         ))}
