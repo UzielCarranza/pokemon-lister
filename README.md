@@ -1,5 +1,5 @@
 A single page application that uses the famous PokéAPI to consume data. 
-## Feattures:
+## Features:
 # Sorting
 # Pagination
 
