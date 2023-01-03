@@ -159,7 +159,7 @@ export const Pokemons = (props) => {
                     <div className="pagination">
 
 
-                        <MdArrowBackIosNew className="back-btn" style={{fontSize: 70}}/>
+                        {/*<MdArrowBackIosNew className="back-btn" style={{fontSize: 70}}/>*/}
                         {/*{pagination.map((item, i) => (*/}
                         {/*    <button*/}
 
@@ -188,8 +188,8 @@ export const Pokemons = (props) => {
                             </button>
                         ))}
 
-                        <MdNavigateNext className="next-btn" style={{fontSize: 105}}
-                                        onClick={getNextPage(pokemons.next)}/>
+                        {/*<MdNavigateNext className="next-btn" style={{fontSize: 105}}*/}
+                        {/*                onClick={getNextPage(pokemons.next)}/>*/}
                     </div>
                 </section>
 
