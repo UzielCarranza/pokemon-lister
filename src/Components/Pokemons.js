@@ -1,13 +1,10 @@
 import {useEffect, useState} from "react";
-import {getServerData} from "../Utils/GetServerData";
-import {DataSource} from "../Utils/DataSource";
-import {PokemonsForms} from "./PokemonsForms";
 import './Pokemons.css';
-import {SiPokemon} from "react-icons/si";
 import axios from "axios";
-import {MdArrowBackIosNew, MdNavigateNext} from "react-icons/md";
 import {NavLink} from "react-router-dom";
-import {paginationByOffsets, PaginationByOffsets} from "./paginationByOffsets";
+import {paginationByOffsets} from "./paginationByOffsets";
+import {SearchByName} from "./functionality/SearchByName";
+import {DisplayMainPageOfPokemons} from "./DisplayMainPageOfPokemons";
 
 
 export const Pokemons = (props) => {
@@ -57,7 +54,9 @@ export const Pokemons = (props) => {
                 .then(res => {
                     setPokemons(res.data)
                     setCurrentPage(objPagination.page + 1)
-                }).catch(error => {console.log(error)})
+                }).catch(error => {
+                    console.log(error)
+                })
         }
     }, [objPagination])
 
@@ -77,14 +76,12 @@ export const Pokemons = (props) => {
             for (let i = currentPage; i < limit; i++) {
                 newArr.push(pagination[i])
             }
-        }
-        else if (currentPage === 30){
+        } else if (currentPage === 30) {
             limit = 40;
             for (let i = currentPage; i < limit; i++) {
                 newArr.push(pagination[i])
             }
-        }
-            else {
+        } else {
             for (let i = currentPage; i < limit; i++) {
                 newArr.push(pagination[i])
             }
@@ -111,69 +108,14 @@ export const Pokemons = (props) => {
                     </div>
 
 
-                    {searchValue !== null ? (
-                            <>
-                                <div className="pokemons-grid">
-                                    {searchValue.map((item, i) => (
-                                        <DataSource key={searchValue[i].name}
-                                                    getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon-form/${searchValue[i].name}`)}
-                                                    resourceName={"forms"}>
-                                            <PokemonsForms key={searchValue[i].name}/>
-                                        </DataSource>
-
-                                    ))}
-                                </div>
-
-                                {
-                                    searchValue.length >= 1 ? (
-                                            " "
-                                        ) :
-                                        (
-                                            <div className="no-results">
-                                                <SiPokemon style={{fontSize: 800}}/>
-                                                <h1>Not found</h1>
-                                            </div>
-                                        )
-
-                                }
-                            </>)
-
+                    {searchValue !== null ?
+                        <SearchByName name={searchValue}/>
                         :
-
-                        (
-                            <>
-                                <div className="pokemons-grid">
-                                    {pokemons.results.map((item, i) => (
-                                        <DataSource key={pokemons.results[i].name}
-                                                    getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon-form/${pokemons.results[i].name}`)}
-                                                    resourceName={"forms"}>
-                                            <PokemonsForms key={pokemons.results[i].name}/>
-                                        </DataSource>
-
-                                    ))}
-                                </div>
-                            </>)
-
+                        <DisplayMainPageOfPokemons pokemons={pokemons}/>
                     }
 
+
                     <div className="pagination">
-
-
-                        {/*<MdArrowBackIosNew className="back-btn" style={{fontSize: 70}}/>*/}
-                        {/*{pagination.map((item, i) => (*/}
-                        {/*    <button*/}
-
-                        {/*        onClick={() => setObjPagination(pagination[i])}*/}
-
-                        {/*        key={pagination[i].page}*/}
-                        {/*        id={pagination[i].page}*/}
-
-                        {/*    >*/}
-                        {/*        page: {pagination[i].page + 2}*/}
-
-                        {/*    </button>*/}
-                        {/*))}*/}
-
                         {paginationBy10.map((item, i) => (
                             <button
 
@@ -187,9 +129,6 @@ export const Pokemons = (props) => {
 
                             </button>
                         ))}
-
-                        {/*<MdNavigateNext className="next-btn" style={{fontSize: 105}}*/}
-                        {/*                onClick={getNextPage(pokemons.next)}/>*/}
                     </div>
                 </section>
 
