@@ -1,0 +1,21 @@
+.centered {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.not-found {
+    color: #000;
+    font-size: 15em;
+}
+
+.message-not-found {
+    color: #000;
+    font-size: 2em;
+    position: fixed;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
