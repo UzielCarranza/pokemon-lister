@@ -5,6 +5,7 @@ import {DataSource} from "./Utils/DataSource";
 import React from "react";
 import {Routes, Route} from "react-router-dom";
 import {Favorites} from "./Components/Favorites";
+import {NotFound} from "./Components/NotFound";
 
 function App() {
     return (
@@ -21,9 +22,7 @@ function App() {
             <Route
                 path="*"
                 element={
-                    <main style={{padding: "1rem"}}>
-                        <p>There's nothing here!</p>
-                    </main>
+                        <NotFound/>
                 }
             />
         </Routes>
