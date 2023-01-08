@@ -106,6 +106,10 @@ export const Pokemons = (props) => {
                             : ""
                         }
                     </div>
+                    <div className="next-previous--buttons">
+                        <button onClick={getPreviousPage(pokemons.previous)}>back</button>
+                        <button onClick={getNextPage(pokemons.next)}>next</button>
+                    </div>
 
 
                     {searchValue !== null ?
