@@ -6,7 +6,7 @@ import {paginationByOffsets} from "./paginationByOffsets";
 import {SearchByName} from "./functionality/SearchByName";
 import {DisplayMainPageOfPokemons} from "./DisplayMainPageOfPokemons";
 import {BsSearch, BsStarFill} from "react-icons/bs";
-import {GrPowerReset} from "react-icons/gr";
+import {GrFormNextLink, GrFormPreviousLink, GrPowerReset} from "react-icons/gr";
 
 
 export const Pokemons = (props) => {
@@ -112,8 +112,8 @@ export const Pokemons = (props) => {
                         }
                     </div>
                     <div className="next-previous--buttons">
-                        <button onClick={getPreviousPage(pokemons.previous)}>back</button>
-                        <button onClick={getNextPage(pokemons.next)}>next</button>
+                        <GrFormPreviousLink className="selected back-next-btn" onClick={getPreviousPage(pokemons.previous)}/>
+                        <GrFormNextLink className="selected back-next-btn" onClick={getNextPage(pokemons.next)}/>
                     </div>
 
 
