@@ -47,7 +47,7 @@ export const Pokemons = (props) => {
         setSearchValue(null)
     }
 
-    const getNextPage = url => async () => {
+    const onPreviousOrNextPages = url => async () => {
         setLoading(true);
         try {
             const response = await axios.get(url)
@@ -57,13 +57,6 @@ export const Pokemons = (props) => {
         }
         setLoading(false);
     }
-
-    const getPreviousPage = url => async () => {
-        const response = await axios.get(url);
-        setPokemons(response.data)
-
-    }
-
 
     useEffect(() => {
         if (objPagination !== null) {
@@ -129,8 +122,8 @@ export const Pokemons = (props) => {
                     </div>
                     <div className="next-previous--buttons">
                         <GrFormPreviousLink className="selected back-next-btn"
-                                            onClick={getPreviousPage(pokemons.previous)}/>
-                        <GrFormNextLink className="selected back-next-btn" onClick={getNextPage(pokemons.next)}/>
+                                            onClick={onPreviousOrNextPages(pokemons.previous)}/>
+                        <GrFormNextLink className="selected back-next-btn" onClick={onPreviousOrNextPages(pokemons.next)}/>
                     </div>
 
                     {
