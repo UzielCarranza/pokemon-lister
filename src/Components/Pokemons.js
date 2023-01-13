@@ -5,6 +5,8 @@ import {NavLink} from "react-router-dom";
 import {paginationByOffsets} from "./paginationByOffsets";
 import {SearchByName} from "./functionality/SearchByName";
 import {DisplayMainPageOfPokemons} from "./DisplayMainPageOfPokemons";
+import {BsSearch} from "react-icons/bs";
+import {GrPowerReset} from "react-icons/gr";
 
 
 export const Pokemons = (props) => {
@@ -94,10 +96,12 @@ export const Pokemons = (props) => {
             <>
                 <section className="section">
                     <div className="search">
-                        <input id="search-input" type="text" onChange={(e) => setSearchByName(e.target.value)}
-                               placeholder="Search by name"/>
-                        <button onClick={search}>search</button>
-                        <button onClick={resetSearch}>reset</button>
+                        <div className="search-by-name-container">
+                            <input id="search-input" type="text" onChange={(e) => setSearchByName(e.target.value)}
+                                   placeholder="Search by name"/>
+                            <BsSearch id="search-icon" onClick={search}/>
+                            <GrPowerReset id="reset-icon" onClick={resetSearch}/>
+                        </div>
                         <button>
                             <NavLink style={{padding: 12, textDecoration: 'none'}} to="/favorites"> Favorites </NavLink>
                         </button>
