@@ -26,12 +26,19 @@ export const Pokemons = (props) => {
     }, [props])
 
     const search = () => {
-        const response = axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=20&limit=1000`)
-            .then(response => {
+        setLoading(true);
+        try {
+            const response = axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=20&limit=1000`)
+                .then(response => {
 
-                const poke = response.data.results.filter(value => value.name.toLowerCase().includes(searchByName.toLowerCase()))
-                setSearchValue(poke)
-            })
+                    const poke = response.data.results.filter(value => value.name.toLowerCase().includes(searchByName.toLowerCase()))
+                    setSearchValue(poke)
+                })
+        } catch (error) {
+            console.error(error.message);
+        }
+        setLoading(false);
+
     }
 
     const resetSearch = () => {
@@ -41,7 +48,6 @@ export const Pokemons = (props) => {
     }
 
     const getNextPage = url => async () => {
-
         setLoading(true);
         try {
             const response = await axios.get(url)
@@ -50,7 +56,6 @@ export const Pokemons = (props) => {
             console.error(error.message);
         }
         setLoading(false);
-        console.log(loading);
     }
 
     const getPreviousPage = url => async () => {
@@ -129,13 +134,19 @@ export const Pokemons = (props) => {
                     </div>
 
                     {
-                     loading === true ? <LoadingScreen/>  : ""
+                        loading === true ? <LoadingScreen/> : ""
                     }
 
                     {searchValue !== null ?
-                        <SearchByName name={searchValue}/>
+                        <>
+                            {loading === true ? <LoadingScreen/> : <SearchByName name={searchValue}/>}
+                        </>
+
+
                         :
-                        <DisplayMainPageOfPokemons pokemons={pokemons}/>
+                        <>
+                            {loading === true ? <LoadingScreen/> : <DisplayMainPageOfPokemons pokemons={pokemons}/>}
+                        </>
                     }
 
 
