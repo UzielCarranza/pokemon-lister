@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import './Pokemons.css';
+import '../styles/Pokemons.css';
 import axios from "axios";
 import {NavLink} from "react-router-dom";
 import {paginationByOffsets} from "./paginationByOffsets";
