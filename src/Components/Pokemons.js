@@ -7,6 +7,7 @@ import {SearchByName} from "./functionality/SearchByName";
 import {DisplayMainPageOfPokemons} from "./DisplayMainPageOfPokemons";
 import {BsSearch, BsStarFill} from "react-icons/bs";
 import {GrFormNextLink, GrFormPreviousLink, GrPowerReset} from "react-icons/gr";
+import {LoadingScreen} from "./LoadingScreen";
 
 
 export const Pokemons = (props) => {
@@ -16,6 +17,7 @@ export const Pokemons = (props) => {
     const [objPagination, setObjPagination] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [paginationBy10, setPaginationBy10] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (props.pokemon !== null) {
@@ -39,8 +41,16 @@ export const Pokemons = (props) => {
     }
 
     const getNextPage = url => async () => {
-        const response = await axios.get(url);
-        setPokemons(response.data);
+
+        setLoading(true);
+        try {
+            const response = await axios.get(url)
+            setPokemons(response.data);
+        } catch (error) {
+            console.error(error.message);
+        }
+        setLoading(false);
+        console.log(loading);
     }
 
     const getPreviousPage = url => async () => {
@@ -104,7 +114,8 @@ export const Pokemons = (props) => {
                         </div>
                         <div className="favorites">
                             <BsStarFill/>
-                            <NavLink className="selected" style={{padding: 12, textDecoration: 'none', color: "#000"}} to="/favorites"> Favorites </NavLink>
+                            <NavLink className="selected" style={{padding: 12, textDecoration: 'none', color: "#000"}}
+                                     to="/favorites"> Favorites </NavLink>
                         </div>
                         {currentPage > 0 ?
                             <p> Displaying results for page : {currentPage}</p>
@@ -112,10 +123,14 @@ export const Pokemons = (props) => {
                         }
                     </div>
                     <div className="next-previous--buttons">
-                        <GrFormPreviousLink className="selected back-next-btn" onClick={getPreviousPage(pokemons.previous)}/>
+                        <GrFormPreviousLink className="selected back-next-btn"
+                                            onClick={getPreviousPage(pokemons.previous)}/>
                         <GrFormNextLink className="selected back-next-btn" onClick={getNextPage(pokemons.next)}/>
                     </div>
 
+                    {
+                     loading === true ? <LoadingScreen/>  : ""
+                    }
 
                     {searchValue !== null ?
                         <SearchByName name={searchValue}/>
@@ -143,7 +158,7 @@ export const Pokemons = (props) => {
 
 
             </>) :
-        <p>404</p>
+        <LoadingScreen/>
 
 
 }
