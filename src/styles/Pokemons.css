@@ -125,19 +125,15 @@ STATS WRAPPER
 }
 
 
-.next-previous--buttons, .back-btn {
-    @apply m-4 flex flex-row justify-center items-center
+.next-previous--buttons{
+    width: 90%;
+    margin: 0 auto;
+    @apply flex flex-row justify-between
 }
 
 
-.back-btn:hover {
-    color: #FDBB2D;
-    @apply cursor-pointer
-}
-
-.next-btn:hover {
-    color: #FDBB2D;
-    @apply cursor-pointer
+.back-next-btn{
+    font-size: 5em;
 }
 
 p {
