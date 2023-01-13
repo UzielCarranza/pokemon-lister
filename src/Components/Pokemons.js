@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom";
 import {paginationByOffsets} from "./paginationByOffsets";
 import {SearchByName} from "./functionality/SearchByName";
 import {DisplayMainPageOfPokemons} from "./DisplayMainPageOfPokemons";
-import {BsSearch} from "react-icons/bs";
+import {BsSearch, BsStarFill} from "react-icons/bs";
 import {GrPowerReset} from "react-icons/gr";
 
 
@@ -102,9 +102,10 @@ export const Pokemons = (props) => {
                             <BsSearch id="search-icon" onClick={search}/>
                             <GrPowerReset id="reset-icon" onClick={resetSearch}/>
                         </div>
-                        <button>
-                            <NavLink style={{padding: 12, textDecoration: 'none'}} to="/favorites"> Favorites </NavLink>
-                        </button>
+                        <div className="favorites">
+                            <BsStarFill/>
+                            <NavLink className="selected" style={{padding: 12, textDecoration: 'none', color: "#000"}} to="/favorites"> Favorites </NavLink>
+                        </div>
                         {currentPage > 0 ?
                             <p> Displaying results for page : {currentPage}</p>
                             : ""
