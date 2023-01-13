@@ -104,6 +104,7 @@ STATS WRAPPER
     flex-wrap: wrap;
     width: 50%;
     margin: 2em auto;
+    align-items: center;
 }
 
 .search-by-name-container {
@@ -115,10 +116,10 @@ STATS WRAPPER
     border: 2px solid #2f3640;
 }
 
-#search-icon:hover, #reset-icon {
+#search-icon:hover, #reset-icon:hover, .selected:hover {
     cursor: pointer;
 }
-#search-icon:active, #reset-icon:active {
+#search-icon:active, #reset-icon:active, .selected:active {
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
@@ -196,4 +197,18 @@ PAGINATION
     text-align: center;
     align-content: center;
     align-items: center;
+}
+
+/*
+FAVORITES
+*/
+
+.favorites{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    color: #000;
 }
