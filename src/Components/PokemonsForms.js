@@ -6,37 +6,28 @@ import {Modal} from "../Utils/Modal";
 import {DisplayPokemonsHabitat} from "./DisplayPokemonsHabitat";
 import {IsAddedToFavorites} from "./functionality/IsAddedToFavorites";
 
-export const PokemonsForms = (props) => {
-    const [forms, setForms] = useState(null);
+export const PokemonsForms = ({forms}) => {
 
-    useEffect(() => {
-        if (props.forms !== null) {
-            setForms(props.forms);
-
-        }
-    }, [props])
-
-
-    return forms !== null && (<>
+    return forms && (<>
 
 
         <div className="card">
-            <IsAddedToFavorites pokemon={props.forms} />
+            <IsAddedToFavorites pokemon={forms} />
 
             <span style={{fontSize: 20, fontWeight: "bold", marginLeft: 20}}>{forms.types[0].type.name}</span>
-            <h1 className="pokemon-name">{props.forms.pokemon.name}</h1>
+            <h1 className="pokemon-name">{forms.pokemon.name}</h1>
             <div className="img-section-wrapper">
-                <img className="card-img" src={props.forms.sprites.front_default} alt="pokemons"/>
+                <img className="card-img" src={forms.sprites.front_default} alt="pokemons"/>
 
                 <DataSource
-                    getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon/${props.forms.pokemon.name}/`)}
+                    getDataFunc={getServerData(`https://pokeapi.co/api/v2/pokemon/${forms.pokemon.name}/`)}
                     resourceName="stats">
                     <Stats/>
                 </DataSource>
             </div>
 
-            <Modal children={props.forms}/>
-            <DisplayPokemonsHabitat pokemon={props.forms}/>
+            <Modal children={forms}/>
+            <DisplayPokemonsHabitat pokemon={forms}/>
         </div>
 
 
