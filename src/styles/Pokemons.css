@@ -35,7 +35,7 @@ CARDS
 /*}*/
 
 .card {
-    background: linear-gradient(90deg, #FDBB2D 0%, #22C1C3 100%);
+    /*background: linear-gradient(90deg, #FDBB2D 0%, #22C1C3 100%);*/
     display: flex;
     flex-flow: row wrap;
     width: 40%;
@@ -44,7 +44,7 @@ CARDS
 
 .card-img {
     height: 10em;
-
+    margin: 2em;
     @apply w-1/2 flex items-center bg-blue-50
 }
 
@@ -66,8 +66,10 @@ CARDS
 
 .img-section-wrapper {
     display: flex;
-    flex-direction: row;
-    @apply m-4
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0 auto;
 }
 
 /*
@@ -75,7 +77,7 @@ STATS WRAPPER
 */
 
 .stats-wrapper {
-
+    background-color: lightblue;
     @apply grid grid-cols-3 md:grid-cols-3 px-2 items-center ml-4
 }
 
