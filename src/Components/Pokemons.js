@@ -1,23 +1,21 @@
 import {useEffect, useState} from "react";
 import '../styles/Pokemons.css';
 import axios from "axios";
-import {NavLink} from "react-router-dom";
 import {paginationByOffsets} from "./paginationByOffsets";
 import {SearchByName} from "./functionality/SearchByName";
 import {DisplayMainPageOfPokemons} from "./DisplayMainPageOfPokemons";
-import {BsSearch, BsStarFill} from "react-icons/bs";
-import {GrFormNextLink, GrFormPreviousLink, GrPowerReset} from "react-icons/gr";
+import {GrFormNextLink, GrFormPreviousLink} from "react-icons/gr";
 import {LoadingScreen} from "./LoadingScreen";
+import {NavBar} from "./NavBar";
 
 
 export const Pokemons = (props) => {
     const [pokemons, setPokemons] = useState(null);
-    const [searchValue, setSearchValue] = useState(null)
-    const [searchByName, setSearchByName] = useState("");
     const [objPagination, setObjPagination] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [paginationBy10, setPaginationBy10] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [searchValue, setSearchValue] = useState(null)
 
     useEffect(() => {
         if (props.pokemon !== null) {
@@ -25,27 +23,6 @@ export const Pokemons = (props) => {
         }
     }, [props])
 
-    const search = () => {
-        setLoading(true);
-        try {
-            const response = axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=20&limit=1000`)
-                .then(response => {
-
-                    const poke = response.data.results.filter(value => value.name.toLowerCase().includes(searchByName.toLowerCase()))
-                    setSearchValue(poke)
-                })
-        } catch (error) {
-            console.error(error.message);
-        }
-        setLoading(false);
-
-    }
-
-    const resetSearch = () => {
-
-        document.getElementById("search-input").value = "";
-        setSearchValue(null)
-    }
 
     const onPreviousOrNextPages = url => async () => {
         setLoading(true);
@@ -103,23 +80,7 @@ export const Pokemons = (props) => {
     return pokemons !== null ? (
             <>
                 <section className="section">
-                    <div className="search">
-                        <div className="search-by-name-container">
-                            <input id="search-input" type="text" onChange={(e) => setSearchByName(e.target.value)}
-                                   placeholder="Search by name"/>
-                            <BsSearch id="search-icon" onClick={search}/>
-                            <GrPowerReset id="reset-icon" onClick={resetSearch}/>
-                        </div>
-                        <div className="favorites">
-                            <BsStarFill/>
-                            <NavLink className="selected" style={{padding: 12, textDecoration: 'none', color: "#000"}}
-                                     to="/favorites"> Favorites </NavLink>
-                        </div>
-                        {currentPage > 0 ?
-                            <p> Displaying results for page : {currentPage}</p>
-                            : ""
-                        }
-                    </div>
+                    <NavBar/>
                     <div className="next-previous--buttons">
                         <GrFormPreviousLink className="selected back-next-btn"
                                             onClick={onPreviousOrNextPages(pokemons.previous)}/>
