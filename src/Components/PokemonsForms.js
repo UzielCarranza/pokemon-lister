@@ -1,18 +1,17 @@
-import {useState, useEffect} from "react";
 import {DataSource} from "../Utils/DataSource";
 import {getServerData} from "../Utils/GetServerData";
 import {Stats} from "./Stats";
 import {Modal} from "../Utils/Modal";
-import {DisplayPokemonsHabitat} from "./DisplayPokemonsHabitat";
 import {IsAddedToFavorites} from "./functionality/IsAddedToFavorites";
+import {getPokemonType} from "./getPokemonType";
 
 export const PokemonsForms = ({forms}) => {
 
-    return forms && (<>
+    return forms && (
 
+        <div className="card" style={{backgroundColor: `${getPokemonType(forms.types[0].type.name)}`}}>
 
-        <div className="card">
-            <IsAddedToFavorites pokemon={forms} />
+            <IsAddedToFavorites pokemon={forms}/>
 
             <span style={{fontSize: 20, fontWeight: "bold", marginLeft: 20}}>{forms.types[0].type.name}</span>
             <h1 className="pokemon-name">{forms.pokemon.name}</h1>
@@ -27,9 +26,7 @@ export const PokemonsForms = ({forms}) => {
             </div>
 
             <Modal children={forms}/>
-            <DisplayPokemonsHabitat pokemon={forms}/>
+            {/*<DisplayPokemonsHabitat pokemon={forms}/>*/}
         </div>
-
-
-    </>)
+    )
 }
