@@ -1,0 +1,152 @@
+/*Code gather from https://blog.logrocket.com/create-responsive-navbar-react-css/*/
+li {
+    list-style-type: none;
+}
+
+.navigation {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0.5rem 0rem;
+    background-color: #fff;
+    color: black;
+    margin-bottom: 2em;
+}
+
+.brand-name {
+    text-decoration: none;
+    color: black;
+    font-size: 1.3rem;
+    margin-left: 1rem;
+}
+
+.navigation-menu {
+    margin-left: auto;
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.navigation-menu ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+}
+
+
+/*/ / increases the surface area of the anchor tag to span more than just the anchor text*/
+.navigation-menu li a {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+}
+
+.hamburger {
+    /*// removes default border on button element*/
+    border: 0;
+    height: 40px;
+    width: 40px;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background-color: #283b8b;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    /*// positions the icon to the right and center aligns it vertically*/
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-50%);
+    display: none;
+}
+
+.hamburger:hover {
+    background-color: #2642af;
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media screen and (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .navigation-menu ul {
+        display: none;
+        /*// navigation menu is positioned to start 60px from the top of the document (which is directly below the navbar)*/
+        position: absolute;
+        top: 60px;
+        left: 0;
+        /*// stacks the li tags vertically*/
+        flex-direction: column;
+        /*// makes menu span full height and width*/
+        width: 100%;
+        height: calc(100vh - 77px);
+        background-color: white;
+        padding: 4em;
+        z-index: 100;
+    }
+
+    .navigation-menu li {
+        /*// centers link text and strips off margin*/
+        text-align: center;
+        margin: 0;
+    }
+
+    .navigation-menu li a {
+        color: black;
+        /*// increases the surface area of the anchor tag to span the full width of the menu*/
+        width: 100%;
+        padding: 1.5rem 0;
+    }
+
+    .navigation-menu li:hover {
+        background-color: #eee;
+    }
+
+    .navigation-menu.expanded ul {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+    }
+
+    .navigation-menu.expanded li {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        padding: 0.5em;
+    }
+
+    /*SUBMENU*/
+    .close-submenu {
+        color: red;
+        position: absolute;
+        top: 5%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2em;
+    }
+
+    #submenu {
+        padding-top: 0 !important;
+    }
+
+    #submenu li {
+        padding-top: 0 !important;
+    }
+}
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .navigation-menu li a {
+        padding: 0.5rem 0;
+    }
+    #submenu{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+}
