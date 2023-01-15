@@ -8,9 +8,8 @@ import {NavLink} from "react-router-dom";
 import axios from "axios";
 
 
-export const NavBar = () => {
+export const NavBar = ({searchResults, isLoading}) => {
     const [isNavExpanded, setIsNavExpanded] = useState(false);
-    const [loading, setLoading] = useState(false);
     const [searchValue, setSearchValue] = useState(null)
     const [searchByName, setSearchByName] = useState("");
 
@@ -18,18 +17,18 @@ export const NavBar = () => {
         setIsNavExpanded(false);
     }
     const search = () => {
-        setLoading(true);
+        isLoading(true);
         try {
             const response = axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=20&limit=1000`)
                 .then(response => {
 
                     const poke = response.data.results.filter(value => value.name.toLowerCase().includes(searchByName.toLowerCase()))
-                    setSearchValue(poke)
+                    searchResults(poke);
                 })
         } catch (error) {
             console.error(error.message);
         }
-        setLoading(false);
+        isLoading(false);
 
     }
 
