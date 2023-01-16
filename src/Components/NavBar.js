@@ -29,6 +29,7 @@ export const NavBar = ({searchResults, isLoading}) => {
             console.error(error.message);
         }
         isLoading(false);
+        setIsNavExpanded(false);
 
     }
 
