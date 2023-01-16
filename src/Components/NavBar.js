@@ -1,4 +1,3 @@
-
 import {useState} from "react";
 import {AiOutlineClose} from "react-icons/ai";
 import {BsSearch, BsStarFill} from "react-icons/bs";
@@ -59,25 +58,27 @@ export const NavBar = ({searchResults, isLoading}) => {
                 </button>
             }
 
-                <div className={isNavExpanded ? "navigation-menu expanded" : "navigation-menu"}>
-                    <ul className="search">
-                        <li className="search-by-name-container">
-                            <input id="search-input" type="text" onChange={(e) => setSearchByName(e.target.value)}
-                                   placeholder="Search by name"/>
-                            <BsSearch id="search-icon" onClick={search}/>
-                            <GrPowerReset id="reset-icon" onClick={resetSearch}/>
-                        </li>
-                        <li className="favorites">
+            <div className={isNavExpanded ? "navigation-menu expanded" : "navigation-menu"}>
+                <ul className="search">
+                    <li className="search-by-name-container">
+                        <input id="search-input" type="text" onChange={(e) => setSearchByName(e.target.value)}
+                               placeholder="Search by name"/>
+                        <BsSearch id="search-icon" onClick={search}/>
+                        <GrPowerReset id="reset-icon" onClick={resetSearch}/>
+                    </li>
+                    <li className="search-by-name-container">
+                        <div className="favorites">
                             <BsStarFill/>
                             <NavLink className="selected" style={{padding: 12, textDecoration: 'none', color: "#000"}}
                                      to="/favorites"> Favorites </NavLink>
-                        </li>
-                        {/*{currentPage > 0 ?*/}
-                        {/*    <p> Displaying results for page : {currentPage}</p>*/}
-                        {/*    : ""*/}
-                        {/*}*/}
-                    </ul>
-                </div>
+                        </div>
+                    </li>
+                    {/*{currentPage > 0 ?*/}
+                    {/*    <p> Displaying results for page : {currentPage}</p>*/}
+                    {/*    : ""*/}
+                    {/*}*/}
+                </ul>
+            </div>
         </nav>
     );
 }
