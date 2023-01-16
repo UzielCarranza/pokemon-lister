@@ -83,10 +83,14 @@ export const Pokemons = (props) => {
     const getIsLoadingStatus = (status) => {
         setLoading(status);
     }
+    const getSearchBarIsReseting = (status) => {
+        setSearchValue(status);
+    }
+
     return pokemons !== null ? (
             <>
                 <section className="section">
-                    <NavBar searchResults={getSearchResult} isLoading={getIsLoadingStatus}/>
+                    <NavBar searchResults={getSearchResult} isLoading={getIsLoadingStatus} isSearchBarReseting={getSearchBarIsReseting}/>
                     <div className="next-previous--buttons">
                         <GrFormPreviousLink className="selected back-next-btn"
                                             onClick={onPreviousOrNextPages(pokemons.previous)}/>
