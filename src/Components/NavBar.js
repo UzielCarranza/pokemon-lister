@@ -7,9 +7,8 @@ import {NavLink} from "react-router-dom";
 import axios from "axios";
 
 
-export const NavBar = ({searchResults, isLoading}) => {
+export const NavBar = ({searchResults, isLoading, isSearchBarReseting}) => {
     const [isNavExpanded, setIsNavExpanded] = useState(false);
-    const [searchValue, setSearchValue] = useState(null)
     const [searchByName, setSearchByName] = useState("");
 
     const closeMenu = () => {
@@ -34,7 +33,7 @@ export const NavBar = ({searchResults, isLoading}) => {
 
     const resetSearch = () => {
         document.getElementById("search-input").value = "";
-        setSearchValue(null)
+        isSearchBarReseting(null);
     }
 
     return (
