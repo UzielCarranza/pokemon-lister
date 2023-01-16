@@ -1,0 +1,207 @@
+/*Code gather from https://blog.logrocket.com/create-responsive-navbar-react-css/*/
+li {
+    list-style-type: none;
+}
+
+.navigation {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0.5rem 0rem;
+    background-color: #fff;
+    color: black;
+    margin-bottom: 2em;
+}
+
+.navigation-menu {
+    margin-left: auto;
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.navigation-menu ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.hamburger {
+    /*// removes default border on button element*/
+    border: 0;
+    height: 40px;
+    width: 40px;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background-color: #283b8b;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    /*// positions the icon to the right and center aligns it vertically*/
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-50%);
+    display: none;
+}
+
+.hamburger:hover {
+    background-color: #2642af;
+}
+
+/*
+FAVORITES
+*/
+
+.favorites{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #000;
+}
+/*
+SEARCH
+*/
+
+.search {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 50%;
+    margin: 2em auto;
+    align-items: center;
+}
+
+.search-by-name-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 40%;
+    padding: 1em;
+    border: 2px solid #2f3640;
+}
+
+#search-icon:hover, #reset-icon:hover, .selected:hover {
+    cursor: pointer;
+}
+#search-icon:active, #reset-icon:active, .selected:active {
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+#search-input{
+    height: 20%;
+    width: 80%;
+}
+#search-icon, #reset-icon {
+    height: 20%;
+    width: 10%;
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media screen and (max-width: 768px) {
+    .search-by-name-container{
+        width: 90%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 2em;
+        align-items: center;
+        height: 12em;
+    }
+    #search-icon, #reset-icon {
+        height: 15%;
+        width: 20%;
+    }
+    #search-input{
+        height: 20%;
+        width: 90%;
+        margin: 0 auto;
+    }
+    .hamburger {
+        display: block;
+    }
+
+    .navigation-menu ul {
+        display: none;
+        /*// navigation menu is positioned to start 60px from the top of the document (which is directly below the navbar)*/
+        position: absolute;
+        top: 60px;
+        left: 0;
+        /*// stacks the li tags vertically*/
+        flex-direction: column;
+        /*// makes menu span full height and width*/
+        width: 100%;
+        height: calc(100vh - 77px);
+        background-color: white;
+        padding: 4em;
+        z-index: 100;
+    }
+
+    .navigation-menu li {
+        /*// centers link text and strips off margin*/
+        text-align: center;
+        margin: 0;
+    }
+
+    .navigation-menu li:hover {
+        background-color: #eee;
+    }
+
+    .navigation-menu.expanded ul {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+    }
+
+    .navigation-menu.expanded li {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        padding: 0.5em;
+    }
+
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media screen and (min-width: 768px) {
+    .navigation{
+        margin: 2em auto;
+    }
+   .navigation-menu{
+       width: 100%;
+       margin: 0 auto;
+       display: flex;
+       flex-direction: column;
+   }
+    #search-icon, #reset-icon {
+        height: 1em;
+        width: 20%;
+        margin: 0.5em auto;
+    }
+    #search-input{
+        width: 100%;
+        margin: 1em auto;
+    }
+    .search-by-name-container{
+        height: 5%;
+        flex-wrap: wrap;
+    }
+    .favorites{
+        display: flex;
+        flex-direction: row;
+        margin: 1.1em auto;
+    }
+
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .search-by-name-container{
+        width: 100%;
+        display: flex;
+        padding: 1em;
+        flex-direction: column;
+        align-items: center;
+        height: 12em;
+    }
+}

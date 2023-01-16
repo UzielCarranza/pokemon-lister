@@ -99,32 +99,7 @@ STATS WRAPPER
     flex-direction: column;
 }
 
-.search {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    width: 50%;
-    margin: 2em auto;
-    align-items: center;
-}
 
-.search-by-name-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 40%;
-    padding: 1em;
-    border: 2px solid #2f3640;
-}
-
-#search-icon:hover, #reset-icon:hover, .selected:hover {
-    cursor: pointer;
-}
-#search-icon:active, #reset-icon:active, .selected:active {
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-}
 
 
 .next-previous--buttons{
@@ -197,16 +172,20 @@ PAGINATION
     align-items: center;
 }
 
-/*
-FAVORITES
-*/
 
-.favorites{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    align-content: center;
-    align-items: center;
-    color: #000;
+/* Medium devices (landscape tablets, 768px and up) */
+@media screen and (max-width: 768px) {
+    .card{
+        width: 80%;
+    }
+    .stats-wrapper{
+        margin: 0 auto;
+    }
+    .pokemon-name{
+        margin: 1em 0 0 0;
+    }
 }
+
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+/*@media only screen and (min-width: 1200px) {...}*/
