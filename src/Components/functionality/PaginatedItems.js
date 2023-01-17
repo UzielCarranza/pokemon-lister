@@ -12,7 +12,7 @@ const items = [20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280,
 //     const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
     // Here we use item offsets; we could also use page offsets
     // following the API or data you're working with.
-    const [itemOffset, setItemOffset] = useState(1270);
+    const [itemOffset, setItemOffset] = useState(0);
 
     // Simulate fetching items from another resources.
     // (This could be items from props; or items loaded in a local state
@@ -24,7 +24,7 @@ const items = [20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280,
 
     // Invoke when user click to request another page.
     const handlePageClick = (event) => {
-        const newOffset = ((event.selected * itemsPerPage) % items.length) * 10;
+        const newOffset = ((event.selected * itemsPerPage) % items.length) * 5;
         // console.log(
         //     `User requested page number ${event.selected}, which is offset ${newOffset}`
         // );
@@ -33,6 +33,7 @@ const items = [20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280,
         // console.log(newOffset, " new offset");
         // console.log(event);
         // console.log(itemsPerPage, "items")
+        console.log(newOffset)
         getResultsOfPagination(`https://pokeapi.co/api/v2/pokemon/?offset=${newOffset}&limit=20`)
     };
 
