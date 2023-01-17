@@ -43,11 +43,11 @@ export const Pokemons = (props) => {
         setSearchValue(status);
     }
     const getResultsOfPagination = async (results) => {
+        console.log(results)
         setLoading(true);
         try {
             const response = await axios.get(results)
             setPokemons(response.data);
-            console.log(pokemons)
         } catch (error) {
             console.error(error.message);
         }
@@ -58,7 +58,8 @@ export const Pokemons = (props) => {
     return pokemons !== null ? (
             <>
                 <section className="section">
-                    <NavBar searchResults={getSearchResult} isLoading={getIsLoadingStatus} isSearchBarReseting={getSearchBarIsReseting}/>
+                    <NavBar searchResults={getSearchResult} isLoading={getIsLoadingStatus}
+                            isSearchBarReseting={getSearchBarIsReseting}/>
                     <div className="next-previous--buttons">
                         <GrFormPreviousLink className="selected back-next-btn"
                                             onClick={onPreviousOrNextPages(pokemons.previous)}/>
@@ -81,7 +82,9 @@ export const Pokemons = (props) => {
                         </>
                     }
 
-                    <PaginatedItems itemsPerPage={4} getResultsOfPagination={getResultsOfPagination}/>
+                    <div className="pagination">
+                        <PaginatedItems itemsPerPage={20} getResultsOfPagination={getResultsOfPagination}/>
+                    </div>
                 </section>
 
 
