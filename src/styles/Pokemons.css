@@ -163,15 +163,17 @@ PAGINATION
 
 .pagination {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 50%;
-    margin: 2em auto;
-    text-align: center;
-    align-content: center;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
-
+.pagination > ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 50%;
+    margin: 2em auto;
+}
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media screen and (max-width: 768px) {
