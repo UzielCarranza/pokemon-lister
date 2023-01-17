@@ -13,6 +13,7 @@ export const Pokemons = (props) => {
     const [pokemons, setPokemons] = useState(null);
     const [loading, setLoading] = useState(false);
     const [searchValue, setSearchValue] = useState(null)
+    const [pokemonsDataBackup, setPokemonsDataBackup] = useState(null);
 
     useEffect(() => {
         if (props.pokemon !== null) {
@@ -34,12 +35,14 @@ export const Pokemons = (props) => {
 
 
     const getSearchResult = (results) => {
+        setPokemonsDataBackup(pokemons);
         setSearchValue(results);
     }
     const getIsLoadingStatus = (status) => {
         setLoading(status);
     }
     const getSearchBarIsReseting = (status) => {
+        setPokemons(pokemonsDataBackup);
         setSearchValue(status);
     }
     const getResultsOfPagination = async (results) => {
