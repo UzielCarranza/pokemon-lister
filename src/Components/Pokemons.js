@@ -7,6 +7,7 @@ import {GrFormNextLink, GrFormPreviousLink} from "react-icons/gr";
 import {LoadingScreen} from "./LoadingScreen";
 import {NavBar} from "./NavBar";
 import {PaginatedItems} from "./functionality/PaginatedItems";
+import {ErrorMessageHandler} from "./functionality/ErrorMessageHandler";
 
 
 export const Pokemons = (props) => {
@@ -14,6 +15,7 @@ export const Pokemons = (props) => {
     const [loading, setLoading] = useState(false);
     const [searchValue, setSearchValue] = useState(null)
     const [pokemonsDataBackup, setPokemonsDataBackup] = useState(null);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         if (props.pokemon !== null) {
@@ -38,12 +40,13 @@ export const Pokemons = (props) => {
             const response = await axios.get(results)
             setPokemons(response.data);
         } catch (error) {
+            setError("failFetchingMainPage");
             console.error(error.message);
         }
         setLoading(false);
     }
 
-    return pokemons !== null ? (
+    return pokemons !== null && error === null ? (
             <>
                 <section className="section">
                     <NavBar searchResults={getSearchResult} isLoading={getIsLoadingStatus}
@@ -51,7 +54,8 @@ export const Pokemons = (props) => {
                     <div className="next-previous--buttons">
                         <GrFormPreviousLink className="selected back-next-btn"
                                             onClick={() => getFetchResultsOnGetRequest(pokemons.previous)}/>
-                        <GrFormNextLink className="selected back-next-btn" onClick={() => getFetchResultsOnGetRequest(pokemons.next)}/>
+                        <GrFormNextLink className="selected back-next-btn"
+                                        onClick={() => getFetchResultsOnGetRequest(pokemons.next)}/>
                     </div>
 
                     {
@@ -77,7 +81,9 @@ export const Pokemons = (props) => {
 
 
             </>) :
-        <LoadingScreen/>
+        error !== null ?
+            ErrorMessageHandler({errorType: error}) :
+            <LoadingScreen/>
 
 
 }
