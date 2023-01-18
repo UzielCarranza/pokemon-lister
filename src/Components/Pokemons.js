@@ -21,19 +21,6 @@ export const Pokemons = (props) => {
         }
     }, [props])
 
-
-    const onPreviousOrNextPages = url => async () => {
-        setLoading(true);
-        try {
-            const response = await axios.get(url)
-            setPokemons(response.data);
-        } catch (error) {
-            console.error(error.message);
-        }
-        setLoading(false);
-    }
-
-
     const getSearchResult = (results) => {
         setPokemonsDataBackup(pokemons);
         setSearchValue(results);
@@ -45,8 +32,7 @@ export const Pokemons = (props) => {
         setPokemons(pokemonsDataBackup);
         setSearchValue(status);
     }
-    const getResultsOfPagination = async (results) => {
-        console.log(results)
+    const getFetchResultsOnGetRequest = async (results) => {
         setLoading(true);
         try {
             const response = await axios.get(results)
@@ -55,7 +41,6 @@ export const Pokemons = (props) => {
             console.error(error.message);
         }
         setLoading(false);
-
     }
 
     return pokemons !== null ? (
@@ -65,8 +50,8 @@ export const Pokemons = (props) => {
                             isSearchBarReseting={getSearchBarIsReseting}/>
                     <div className="next-previous--buttons">
                         <GrFormPreviousLink className="selected back-next-btn"
-                                            onClick={onPreviousOrNextPages(pokemons.previous)}/>
-                        <GrFormNextLink className="selected back-next-btn" onClick={onPreviousOrNextPages(pokemons.next)}/>
+                                            onClick={() => getFetchResultsOnGetRequest(pokemons.previous)}/>
+                        <GrFormNextLink className="selected back-next-btn" onClick={() => getFetchResultsOnGetRequest(pokemons.next)}/>
                     </div>
 
                     {
@@ -86,7 +71,7 @@ export const Pokemons = (props) => {
                     }
 
                     <div className="pagination">
-                        <PaginatedItems itemsPerPage={20} getResultsOfPagination={getResultsOfPagination}/>
+                        <PaginatedItems itemsPerPage={20} getResultsOfPagination={getFetchResultsOnGetRequest}/>
                     </div>
                 </section>
 
