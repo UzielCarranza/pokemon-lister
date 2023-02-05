@@ -2,7 +2,7 @@ import {getFromLocalStorage} from "../Utils/getFromLocalStorage";
 import {DataSource} from "../Utils/DataSource";
 import {getServerData} from "../Utils/GetServerData";
 import {PokemonsForms} from "./PokemonsForms";
-import {Link, NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 export const Favorites = () => {
     let fav = getFromLocalStorage();

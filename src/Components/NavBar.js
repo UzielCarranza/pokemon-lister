@@ -17,7 +17,7 @@ export const NavBar = ({searchResults, isLoading, isSearchBarReseting}) => {
     const search = () => {
         isLoading(true);
         try {
-            const response = axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=20&limit=1000`)
+            axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=20&limit=1000`)
                 .then(response => {
 
                     const poke = response.data.results.filter(value => value.name.toLowerCase().includes(searchByName.toLowerCase()))
@@ -27,6 +27,7 @@ export const NavBar = ({searchResults, isLoading, isSearchBarReseting}) => {
             console.error(error.message);
         }
         isLoading(false);
+
         setIsNavExpanded(false);
 
     }

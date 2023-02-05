@@ -22,7 +22,7 @@ export const PaginatedItems = ({ itemsPerPage, getResultsOfPagination }) => {
     // from an API endpoint with useEffect and useState)
     const endOffset = itemOffset + itemsPerPage;
     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    const currentItems = items.slice(itemOffset, endOffset);
+    // const currentItems = items.slice(itemOffset, endOffset);
     const pageCount = 64;
 
     // Invoke when user click to request another page.
