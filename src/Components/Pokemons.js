@@ -1,21 +1,21 @@
 import {useEffect, useState} from "react";
 import '../styles/Pokemons.css';
 import axios from "axios";
-import {paginationByOffsets} from "./paginationByOffsets";
 import {SearchByName} from "./functionality/SearchByName";
 import {DisplayMainPageOfPokemons} from "./DisplayMainPageOfPokemons";
 import {GrFormNextLink, GrFormPreviousLink} from "react-icons/gr";
 import {LoadingScreen} from "./LoadingScreen";
 import {NavBar} from "./NavBar";
+import {PaginatedItems} from "./functionality/PaginatedItems";
+import {ErrorMessageHandler} from "./functionality/ErrorMessageHandler";
 
 
 export const Pokemons = (props) => {
     const [pokemons, setPokemons] = useState(null);
-    const [objPagination, setObjPagination] = useState(null);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [paginationBy10, setPaginationBy10] = useState(null);
     const [loading, setLoading] = useState(false);
     const [searchValue, setSearchValue] = useState(null)
+    const [pokemonsDataBackup, setPokemonsDataBackup] = useState(null);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         if (props.pokemon !== null) {
@@ -23,78 +23,39 @@ export const Pokemons = (props) => {
         }
     }, [props])
 
-
-    const onPreviousOrNextPages = url => async () => {
-        setLoading(true);
-        try {
-            const response = await axios.get(url)
-            setPokemons(response.data);
-        } catch (error) {
-            console.error(error.message);
-        }
-        setLoading(false);
-    }
-
-    useEffect(() => {
-        if (objPagination !== null) {
-            const response = axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=${objPagination.offset}&limit=20`)
-                .then(res => {
-                    setPokemons(res.data)
-                    setCurrentPage(objPagination.page + 1)
-                }).catch(error => {
-                    console.log(error)
-                })
-        }
-    }, [objPagination])
-
-
-    let pagination = paginationByOffsets();
-
-    useEffect(() => {
-        let newArr = [];
-        let limit = 10;
-        if (currentPage === 10) {
-            limit += 10
-            for (let i = currentPage; i < limit; i++) {
-                newArr.push(pagination[i])
-            }
-        } else if (currentPage === 20) {
-            limit = 30
-            for (let i = currentPage; i < limit; i++) {
-                newArr.push(pagination[i])
-            }
-        } else if (currentPage === 30) {
-            limit = 40;
-            for (let i = currentPage; i < limit; i++) {
-                newArr.push(pagination[i])
-            }
-        } else {
-            for (let i = currentPage; i < limit; i++) {
-                newArr.push(pagination[i])
-            }
-        }
-        setPaginationBy10(newArr);
-    }, [currentPage])
-
-
     const getSearchResult = (results) => {
+        setPokemonsDataBackup(pokemons);
         setSearchValue(results);
     }
     const getIsLoadingStatus = (status) => {
         setLoading(status);
     }
     const getSearchBarIsReseting = (status) => {
+        setPokemons(pokemonsDataBackup);
         setSearchValue(status);
     }
+    const getFetchResultsOnGetRequest = async (results) => {
+        setLoading(true);
+        try {
+            const response = await axios.get(results)
+            setPokemons(response.data);
+        } catch (error) {
+            setError("failFetchingMainPage");
+            console.error(error.message);
+        }
+        setLoading(false);
+    }
 
-    return pokemons !== null ? (
+    return pokemons !== null && error === null ? (
             <>
                 <section className="section">
-                    <NavBar searchResults={getSearchResult} isLoading={getIsLoadingStatus} isSearchBarReseting={getSearchBarIsReseting}/>
+                    <NavBar searchResults={getSearchResult} isLoading={getIsLoadingStatus}
+                            isSearchBarReseting={getSearchBarIsReseting}/>
                     <div className="next-previous--buttons">
                         <GrFormPreviousLink className="selected back-next-btn"
-                                            onClick={onPreviousOrNextPages(pokemons.previous)}/>
-                        <GrFormNextLink className="selected back-next-btn" onClick={onPreviousOrNextPages(pokemons.next)}/>
+                                            onClick={() => getFetchResultsOnGetRequest(pokemons.previous)}/>
+                        <GrFormNextLink className="selected back-next-btn"
+                                        onClick={() => getFetchResultsOnGetRequest(pokemons.next)}/>
                     </div>
 
                     {
@@ -113,27 +74,16 @@ export const Pokemons = (props) => {
                         </>
                     }
 
-
                     <div className="pagination">
-                        {paginationBy10.map((item, i) => (
-                            <button
-
-                                onClick={() => setObjPagination(paginationBy10[i])}
-
-                                key={paginationBy10[i].page}
-                                id={paginationBy10[i].page}
-
-                            >
-                                page: {paginationBy10[i].page + 1}
-
-                            </button>
-                        ))}
+                        <PaginatedItems itemsPerPage={20} getResultsOfPagination={getFetchResultsOnGetRequest}/>
                     </div>
                 </section>
 
 
             </>) :
-        <LoadingScreen/>
+        error !== null ?
+            ErrorMessageHandler({errorType: error}) :
+            <LoadingScreen/>
 
 
 }
