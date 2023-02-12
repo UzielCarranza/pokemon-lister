@@ -16,9 +16,9 @@ Overall, this project demonstrates my commitment to enhancing my skills as a fro
 
 
 ## Features:
- Sorting
- Pagination
- Add to favorites section
+Sorting
+Pagination
+Add to favorites section
 
 # Technologies
 React.js
